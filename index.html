@@ -675,13 +675,13 @@
 <p>The user configuration is seperated in different files &amp; directories:</p>
 <ul>
 <li><code>projects/</code> - This directory contains all your Application/Project config</li>
-<li><code>name-of-project/</code> - This directory name represents the name of our project</li>
+<li><code>name-of-project/</code> - This directory name represents the name of our project<ul>
 <li><code>project.yaml</code> - The most important config, containing all our applications of this project</li>
-<li><code>values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code><ul>
+<li><code>values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code></li>
 <li><code>name-of-app.yaml</code> - Values file for the application "name-of-app"</li>
+<li><code>manifests/</code> - Static yaml manifests for your app</li>
 </ul>
 </li>
-<li><code>manifests/</code> - Static yaml manifests for your app</li>
 <li><code>resources/</code> - This directory contains all global config, like NetworkPolcies, Repos </li>
 <li><code>manifests/</code> - Can be used for static YAML-Manifests</li>
 <li><code>snippets/</code> - Value snippets for your apps</li>
