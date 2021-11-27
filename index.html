@@ -362,6 +362,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-problem-does-heqet-solve" class="md-nav__link">
+    What problem does heqet solve?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#keyfeatures" class="md-nav__link">
     Keyfeatures
   </a>
@@ -642,48 +649,57 @@
                 
 <h1 id="heqet">Heqet<a class="headerlink" href="#heqet" title="Permanent link">&para;</a></h1>
 <p><em>Heqet (Egyptian ḥqt, also ḥqtyt "Heqtit") is an Egyptian goddess of fertility.</em></p>
-<p>Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It reduces the need of redundant configuration by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all ArgoCD-Applications, -Projects, Namespaces &amp; more using Argo-CDs <a href="https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/">App-of-Apps-Pattern</a>.</p>
+<p>Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It's goal is to reduce the need of redundant configuration in a GitOps environment, by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all ArgoCD-Applications, -Projects, Namespaces &amp; more using Argo-CDs <a href="https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/">App-of-Apps-Pattern</a>.</p>
+<h2 id="what-problem-does-heqet-solve">What problem does heqet solve?<a class="headerlink" href="#what-problem-does-heqet-solve" title="Permanent link">&para;</a></h2>
+<p>Kubernetes allows declarative infrastructure which can be stored in git easily. Argo-CD is used to deploy those configurations. With Argo-CD it's simple to deploy Helm-Charts. But you still need to write a lot of redundant yaml-files.</p>
+<p>Heqet reduces the configuration required to deploy Helm-chart-based applications to the bare minimum:
+ - What's the name of your app?
+ - Which Chart to deploy? 
+ - Which values to apply?
+ - Do it!</p>
 <h2 id="keyfeatures">Keyfeatures<a class="headerlink" href="#keyfeatures" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Easy Setup [Just requires a sane Kubernetes cluster + ArgoCD + PVC-StorageClass]</li>
-<li>Easy / DRY application definition &amp; configuration</li>
+<li>Easy Setup [Just requires Kubernetes + Argo-CD]</li>
+<li>Simple / DRY application definition &amp; configuration</li>
 <li>Follows the GitOps principles</li>
 <li>Deploy a whole application environment or cluster from a singe git-repo</li>
 <li>Addons for simple generation of <code>VaultSecret</code> and <code>NetworkPolicy</code> resources</li>
 <li>Include reuseable resources like value snippets &amp; NetworkPolicies into your app</li>
+<li>Inheritance of configuration options [defaults -&gt; project -&gt; app]</li>
 </ul>
-<p><strong>This project is still under active development. Feel free to try it out, give feedback, create an issue and contribute!</strong></p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p><img alt="Heqet Overview" src="https://nold360.github.io/heqet/assets/heqet-overview.jpg" /></p>
+<p><img alt="Heqet Overview" src="https://lib42.github.io/heqet/assets/heqet-overview.jpg" /></p>
 <h2 id="components-configuration">Components &amp; Configuration<a class="headerlink" href="#components-configuration" title="Permanent link">&para;</a></h2>
-<p>Core component is <code>ArgoCD</code> which will deploy Heqet &amp; also your other apps! All you need is a git-repo &amp; k8s cluster.</p>
-<p>The heqet Helm-Chart will generate ArgoCD-Applications &amp; -Projects, Namespaces and if required <code>VaultSecret</code>s, <code>NetworkPolicies</code>, Argo-CD Repositories and more. </p>
-<p>The configuration is seperated in different files &amp; directories:</p>
+<p>Core component is <code>Argo-CD</code> which will deploy Heqet &amp; also your apps! All you need is a git-repo &amp; k8s cluster.</p>
+<p>The heqet Configuration-Management-Plugin [CMP] will generate ArgoCD-Applications &amp; -Projects, Namespaces and if required <code>VaultSecret</code>s, <code>NetworkPolicies</code>, Argo-CD Repositories and more. </p>
+<p>The user configuration is seperated in different files &amp; directories:</p>
 <ul>
 <li><code>projects/</code> - This directory contains all your Application/Project config</li>
-<li><code>name-of-project/</code> - This directory name represents the name of our project<ul>
+<li><code>name-of-project/</code> - This directory name represents the name of our project</li>
 <li><code>project.yaml</code> - The most important config, containing all our applications of this project</li>
-<li><code>values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code></li>
+<li><code>values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code><ul>
 <li><code>name-of-app.yaml</code> - Values file for the application "name-of-app"</li>
-<li><code>manifests/</code> - Static yaml manifests for your app</li>
 </ul>
 </li>
+<li><code>manifests/</code> - Static yaml manifests for your app</li>
 <li><code>resources/</code> - This directory contains all global config, like NetworkPolcies, Repos </li>
 <li><code>manifests/</code> - Can be used for static YAML-Manifests</li>
-<li><code>sippets/</code> - Value snippets for your apps</li>
+<li><code>snippets/</code> - Value snippets for your apps</li>
 </ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>Installing heqet can't be simpler:</p>
+<p>Installing heqet is quite simple:</p>
 <ol>
-<li>Install Argo-CD on your cluster &amp; set it up to your needs</li>
+<li>Install Argo-CD version &gt;= 2.2.0 on your cluster &amp; set it up to your needs</li>
+<li>Configure Argo-CD Plugin</li>
+<li>Create your heqet userdata git repository</li>
 <li>Configure <code>manifests/heqet-apps.yaml</code> to match your Setup</li>
 <li><code>kubectl apply -f manifests/heqet-apps.yaml</code></li>
 <li>Create your configuration in <code>projects</code> and <code>resources</code> folders </li>
 </ol>
 <h2 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
-<p>Check out the <code>hive</code>-branch of this repository for the latest deployment configuration in my homelab environment.</p>
+<p>FIXME</p>
 <h2 id="docs">Docs<a class="headerlink" href="#docs" title="Permanent link">&para;</a></h2>
-<p>Check out the full documentation: <a href="https://nold360.github.io/heqet">here</a></p>
+<p>Check out the full documentation: <a href="https://lib42.github.io/heqet">here</a></p>
                 
               
             </article>

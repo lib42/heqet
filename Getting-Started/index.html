@@ -392,8 +392,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fork-heqet" class="md-nav__link">
-    Fork heqet
+  <a href="#argo-cd-configuration-management-plugin" class="md-nav__link">
+    Argo-CD Configuration Management Plugin
+  </a>
+  
+    <nav class="md-nav" aria-label="Argo-CD Configuration Management Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-configuration-using-argo-cd-helm-chart" class="md-nav__link">
+    Example Configuration using Argo-CD Helm-Chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-your-userdata-git-repository" class="md-nav__link">
+    Creating your userdata git repository
   </a>
   
 </li>
@@ -613,8 +633,68 @@
 
                 
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<h2 id="fork-heqet">Fork heqet<a class="headerlink" href="#fork-heqet" title="Permanent link">&para;</a></h2>
-<p>Since currently there is no way i know of, to seperate heqets config from it's code. I guess it's best you fork the whole github repo &amp; start your config in <code>charts/heqet</code>. This way you should be able to "easily" rebase the fork on the current upstream in case of code changed. [If you don't mess with the code itself that is].</p>
+<h2 id="argo-cd-configuration-management-plugin">Argo-CD Configuration Management Plugin<a class="headerlink" href="#argo-cd-configuration-management-plugin" title="Permanent link">&para;</a></h2>
+<p>Heqet is basically not more then a hacky helm-chart. But to make it's configuration easier &amp; more structured, i needed a way to split the chart from your custom values [or "userdata"].</p>
+<p>Since version 2.2.0 Argo-CD supports "Configuration Management Plugins" [CMP] using sidecar containers. Heqet is utilizing this feature by injecting a sidecar-container into Argo-CD's repo-server pod. The CMP will take care of keeping Heqets code and your userdata up-to-date.</p>
+<p>Thanks to this great feature of Argo-CD, your custom configuration &amp; heqet's helm chart can be updated independantly.</p>
+<h3 id="example-configuration-using-argo-cd-helm-chart">Example Configuration using Argo-CD Helm-Chart<a class="headerlink" href="#example-configuration-using-argo-cd-helm-chart" title="Permanent link">&para;</a></h3>
+<p>In this example we are using the official <a href="https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd">Argo-CD Helm Chart</a>:</p>
+<p>Here is a incomplere snippet from the <code>values.yaml</code>:</p>
+<pre><code class="language-yaml">repoServer:
+  # We'll need these for the sidecar injection to work:
+  volumes:
+  - name: var-files
+    emptyDir: {}
+  - name: plugins
+    emptyDir: {}
+
+  # Shared plugin directory
+  volumeMounts:
+  - mountPath: /home/argocd/cmp-server/plugins
+    name: plugins
+
+  # This copies the CMP-Server for the sidecar
+  initContainers:
+  - name: copy-cmp-server
+    image: quay.io/argoproj/argocd:latest
+    command:
+    - cp
+    - -n
+    - /usr/local/bin/argocd
+    - /var/run/argocd/argocd-cmp-server
+    volumeMounts:
+      - mountPath: /var/run/argocd
+        name: var-files
+
+  # Heqet Sidecar:
+  extraContainers:
+  - name: cmp-heqet
+    command: [/var/run/argocd/argocd-cmp-server]
+    image: lib42/heqet-cli:latest
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 999
+    volumeMounts:
+      - mountPath: /var/run/argocd
+        name: var-files
+      - mountPath: /home/argocd/cmp-server/plugins
+        name: plugins
+      - mountPath: /tmp
+        name: tmp-dir
+</code></pre>
+<p>Notice: Make sure the repo-server &amp; sidecar use the same /tmp-volume!</p>
+<h2 id="creating-your-userdata-git-repository">Creating your userdata git repository<a class="headerlink" href="#creating-your-userdata-git-repository" title="Permanent link">&para;</a></h2>
+<p>When the CMP is setup, it's time to deploy your first app using heqet. For this you'll need a "userdata"-repo. </p>
+<p>For an example, check out my homelab config: <a href="https://github.com/Nold360/hive-apps/">hive-apps</a></p>
+<p>One important file is the <code>Heqetfile</code>. It's required to make the CMP work &amp; will be used to determine which heqet-version / branch to use.</p>
+<p>Example Heqetfile:</p>
+<pre><code class="language-bash"># Heqetfile
+heqet_repo=https://github.com/lib42/heqet.git
+heqet_revision=v3
+heqet_path=charts/heqet
+heqet_values=values.yaml
+</code></pre>
+<p>Normally you wouldn't need to change these options unless you want to use your own fork of heqet.</p>
 <h2 id="creating-a-new-project">Creating a new project<a class="headerlink" href="#creating-a-new-project" title="Permanent link">&para;</a></h2>
 <p>Copy the <code>example/project</code> folder to <code>charts/heqet/projects/name-of-your-project</code>. It contains a template for the <code>project.yaml</code> and also the <code>values</code> directory.</p>
 <p>In the <code>values</code> directory you can simple create a new .yaml file, this the name of the app it belongs to. [same name as defined in the <code>project.yaml</code> by you. </p>
