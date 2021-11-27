@@ -225,6 +225,18 @@
 
 
   <li class="md-tabs__item">
+    <a href="Overview/" class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
     <a href="k3s/" class="md-tabs__link">
       Heqet on K3s
     </a>
@@ -387,6 +399,19 @@
     Components &amp; Configuration
   </a>
   
+    <nav class="md-nav" aria-label="Components &amp; Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filestructure" class="md-nav__link">
+    Filestructure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -456,6 +481,21 @@
   
   
     <li class="md-nav__item">
+      <a href="Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="k3s/" class="md-nav__link">
         Heqet on K3s
       </a>
@@ -489,18 +529,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_7">
           Addons
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Addons" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Addons
         </label>
@@ -579,18 +619,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_7">
+        <label class="md-nav__link" for="__nav_8">
           Config
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Config" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
+        <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Config
         </label>
@@ -672,19 +712,22 @@
 <h2 id="components-configuration">Components &amp; Configuration<a class="headerlink" href="#components-configuration" title="Permanent link">&para;</a></h2>
 <p>Core component is <code>Argo-CD</code> which will deploy Heqet &amp; also your apps! All you need is a git-repo &amp; k8s cluster.</p>
 <p>The heqet Configuration-Management-Plugin [CMP] will generate ArgoCD-Applications &amp; -Projects, Namespaces and if required <code>VaultSecret</code>s, <code>NetworkPolicies</code>, Argo-CD Repositories and more. </p>
-<p>The user configuration is seperated in different files &amp; directories:</p>
+<h3 id="filestructure">Filestructure<a class="headerlink" href="#filestructure" title="Permanent link">&para;</a></h3>
+<p>Heqet is highly opinionated about it's structure. It helps you keeping multiple projects organized. The user configuration is organized like this:</p>
 <ul>
-<li><code>projects/</code> - This directory contains all your Application/Project config</li>
-<li><code>name-of-project/</code> - This directory name represents the name of our project<ul>
-<li><code>project.yaml</code> - The most important config, containing all our applications of this project</li>
-<li><code>values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code></li>
-<li><code>name-of-app.yaml</code> - Values file for the application "name-of-app"</li>
-<li><code>manifests/</code> - Static yaml manifests for your app</li>
-</ul>
+<li><code>/projects/</code> - This directory contains all your Application/Project config</li>
+<li><code>/projects/name-of-project/</code> - This directory name represents the name of our project</li>
+<li><code>/projects/name-of-project/project.yaml</code> - The most important config, containing all our applications &amp; project config</li>
+<li><code>/projects/name-of-project/values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code></li>
+<li><code>/projects/name-of-project/values/name-of-app.yaml</code> - Values file for the application "name-of-app"</li>
+<li>
+<p><code>/projects/name-of-project/manifests/</code> - Static yaml manifests for your app</p>
 </li>
-<li><code>resources/</code> - This directory contains all global config, like NetworkPolcies, Repos </li>
-<li><code>manifests/</code> - Can be used for static YAML-Manifests</li>
-<li><code>snippets/</code> - Value snippets for your apps</li>
+<li>
+<p><code>/resources/</code> - This directory contains all global config, like NetworkPolcies, Repos </p>
+</li>
+<li><code>/resources/manifests/</code> - Can be used for static YAML-Manifests, like CRD's and other global configurations</li>
+<li><code>/resources/snippets/</code> - Value snippets for your apps</li>
 </ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>Installing heqet is quite simple:</p>
@@ -697,7 +740,20 @@
 <li>Create your configuration in <code>projects</code> and <code>resources</code> folders </li>
 </ol>
 <h2 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
-<p>FIXME</p>
+<table>
+<thead>
+<tr>
+<th>- Name -</th>
+<th>- Description -</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/Nold360/hive-apps/">Hive-Apps</a></td>
+<td>My Homelab configuration</td>
+</tr>
+</tbody>
+</table>
 <h2 id="docs">Docs<a class="headerlink" href="#docs" title="Permanent link">&para;</a></h2>
 <p>Check out the full documentation: <a href="https://lib42.github.io/heqet">here</a></p>
                 
