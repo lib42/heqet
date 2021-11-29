@@ -15,7 +15,10 @@ steps:
   - mkdocs gh-deploy --clean --remote-name gh-token
 
 - name: build-image
-  image: plugins/buildah-docker
+  image: plugins/kaniko
+  environment:
+    # Workaround for Kanikos container detection
+    container: docker
   settings:
     username:
       from_secret: docker_username
