@@ -13,6 +13,8 @@ steps:
   - git remote add gh-token "https://$${GH_TOKEN}@github.com/lib42/heqet.git"
   - git fetch gh-token && git fetch gh-token gh-deploy:gh-deploy
   - cp README.md docs/index.md
+  - git clone --depth=1 https://github.com/lib42/helm-heqet /tmp/helm
+  - cp /tmp/helm/README.md docs/helm-plugin.md
   - mkdocs gh-deploy --clean --remote-name gh-token
 
 - name: build-image

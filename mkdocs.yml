@@ -30,6 +30,7 @@ nav:
   - Heqet: index.md
   - Overview: overview.md
   - 'Getting Started': getting-started.md
+  - 'Helm Plugin': helm-plugin.md # from lib42/helm-heqet
   - Filestructure: filestructure.md
   - Configuration: 'config'
   - Addons: 'addons'
