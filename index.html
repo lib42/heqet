@@ -716,11 +716,14 @@
 <p>Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It's goal is to reduce the need of redundant configuration in a GitOps environment, by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all ArgoCD-Applications, -Projects, Namespaces &amp; more using Argo-CDs <a href="https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/">App-of-Apps-Pattern</a>.</p>
 <h2 id="what-problem-does-heqet-solve">What problem does heqet solve?<a class="headerlink" href="#what-problem-does-heqet-solve" title="Permanent link">&para;</a></h2>
 <p>Kubernetes allows declarative infrastructure which can be stored in git easily. Argo-CD is used to deploy those configurations. With Argo-CD it's simple to deploy Helm-Charts. But you still need to write a lot of redundant yaml-files.</p>
-<p>Heqet reduces the configuration required to deploy Helm-chart-based applications to the bare minimum:
- - What's the name of your app?
- - Which Chart to deploy? 
- - Which values to apply?
- - Do it!</p>
+<p>Heqet reduces the configuration required to deploy Helm-chart-based applications to the bare minimum:</p>
+<ul>
+<li>What's the name of your app?</li>
+<li>Which Chart to deploy? </li>
+<li>Which values to apply?</li>
+<li>Deploy it!</li>
+</ul>
+<p>Making GitOps based deployments simple while keeping kubernetes power &amp; customizability.</p>
 <h2 id="keyfeatures">Keyfeatures<a class="headerlink" href="#keyfeatures" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Easy Setup [Just requires Kubernetes + Argo-CD]</li>
