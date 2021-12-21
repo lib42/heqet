@@ -78,7 +78,7 @@ heqet_path=charts/heqet
 heqet_values=values.yaml
 ```
 
-Normally you wouldn't need to change these options unless you want to use your own fork of heqet. See also [Heqetfile](/heqet/config/heqetfile)
+Normally you wouldn't need to change these options unless you want to use your own fork of heqet. See also [Heqetfile](/heqet/config/Heqetfile)
 
 ## Creating a new project
 

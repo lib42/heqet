@@ -9,10 +9,13 @@ Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. I
 Kubernetes allows declarative infrastructure which can be stored in git easily. Argo-CD is used to deploy those configurations. With Argo-CD it's simple to deploy Helm-Charts. But you still need to write a lot of redundant yaml-files.
 
 Heqet reduces the configuration required to deploy Helm-chart-based applications to the bare minimum:
- - What's the name of your app?
- - Which Chart to deploy? 
- - Which values to apply?
- - Do it!
+
+ * What's the name of your app?
+ * Which Chart to deploy? 
+ * Which values to apply?
+ * Deploy it!
+
+Making GitOps based deployments simple while keeping kubernetes power & customizability.
 
 ## Keyfeatures
  * Easy Setup [Just requires Kubernetes + Argo-CD]
