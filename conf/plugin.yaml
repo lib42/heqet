@@ -8,12 +8,14 @@ spec:
   # Setup Heqet
   init:
     command:
-    - hqt
+    - helm
+    - heqet
     - setup
   # Generate yaml
   generate:
     command:
-    - hqt
+    - helm
+    - heqet
     - generate
   # Plugin only works with Heqetfile in userdata repo
   discover:
