@@ -13,7 +13,7 @@
     
     
       
-        <title>Getting Started - Heqet - Simple ArgoCD Bootstrapping</title>
+        <title>Overview - Heqet - Simple ArgoCD Bootstrapping</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              Overview
             
           </span>
         </div>
@@ -196,36 +196,12 @@
         
   
   
-
-
-  <li class="md-tabs__item">
-    <a href="../Filestructure/" class="md-tabs__link">
-      Directory & Filestructure
-    </a>
-  </li>
-
-      
-        
-  
-  
     
   
 
 
   <li class="md-tabs__item">
     <a href="./" class="md-tabs__link md-tabs__link--active">
-      Getting Started
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../Overview/" class="md-tabs__link">
       Overview
     </a>
   </li>
@@ -237,8 +213,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../k3s/" class="md-tabs__link">
-      Heqet on K3s
+    <a href="../getting-started/" class="md-tabs__link">
+      Getting Started
     </a>
   </li>
 
@@ -249,8 +225,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../vault/" class="md-tabs__link">
-      Vault
+    <a href="../filestructure/" class="md-tabs__link">
+      Filestructure
     </a>
   </li>
 
@@ -260,15 +236,11 @@
   
 
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../addons/" class="md-tabs__link">
-        Addons
-      </a>
-    </li>
-  
+  <li class="md-tabs__item">
+    <a href="/config/" class="md-tabs__link">
+      Configuration
+    </a>
+  </li>
 
       
         
@@ -276,15 +248,23 @@
   
 
 
+  <li class="md-tabs__item">
+    <a href="/addons/" class="md-tabs__link">
+      Addons
+    </a>
+  </li>
+
+      
+        
   
   
-  
-    <li class="md-tabs__item">
-      <a href="../config/application/" class="md-tabs__link">
-        Config
-      </a>
-    </li>
-  
+
+
+  <li class="md-tabs__item">
+    <a href="/misc/" class="md-tabs__link">
+      Misc
+    </a>
+  </li>
 
       
     </ul>
@@ -353,21 +333,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../Filestructure/" class="md-nav__link">
-        Directory & Filestructure
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -380,12 +345,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Getting Started
+          Overview
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Getting Started
+        Overview
       </a>
       
         
@@ -404,16 +369,52 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#argo-cd-configuration-management-plugin" class="md-nav__link">
-    Argo-CD Configuration Management Plugin
+  <a href="#apps" class="md-nav__link">
+    Apps
   </a>
   
-    <nav class="md-nav" aria-label="Argo-CD Configuration Management Plugin">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    Projects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-configuration-using-argo-cd-helm-chart" class="md-nav__link">
-    Example Configuration using Argo-CD Helm-Chart
+  <a href="#networkpolicies-networkpolicyyaml" class="md-nav__link">
+    NetworkPolicies [networkpolicy.yaml]
+  </a>
+  
+    <nav class="md-nav" aria-label="NetworkPolicies [networkpolicy.yaml]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    Config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies" class="md-nav__link">
+    Policies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    Groups
   </a>
   
 </li>
@@ -422,18 +423,23 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-your-userdata-git-repository" class="md-nav__link">
-    Creating your userdata git repository
+        
+          <li class="md-nav__item">
+  <a href="#snippets" class="md-nav__link">
+    Snippets
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-new-project" class="md-nav__link">
-    Creating a new project
+        
+          <li class="md-nav__item">
+  <a href="#repos" class="md-nav__link">
+    Repos
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -453,8 +459,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Overview/" class="md-nav__link">
-        Overview
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
       </a>
     </li>
   
@@ -468,8 +474,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../k3s/" class="md-nav__link">
-        Heqet on K3s
+      <a href="../filestructure/" class="md-nav__link">
+        Filestructure
       </a>
     </li>
   
@@ -483,8 +489,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../vault/" class="md-nav__link">
-        Vault
+      <a href="/config/" class="md-nav__link">
+        Configuration
       </a>
     </li>
   
@@ -497,88 +503,13 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_7">
-          Addons
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Addons" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
-          <span class="md-nav__icon md-icon"></span>
-          Addons
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../addons/" class="md-nav__link">
+      <a href="/addons/" class="md-nav__link">
         Addons
       </a>
     </li>
   
 
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../addons/networkpolicy/" class="md-nav__link">
-        NetworkPolicy
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../addons/repos/" class="md-nav__link">
-        Repositories
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../addons/vault/" class="md-nav__link">
-        VaultSecret Generator
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
     
       
       
@@ -587,57 +518,10 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_8">
-          Config
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Config" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
-          <span class="md-nav__icon md-icon"></span>
-          Config
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../config/application/" class="md-nav__link">
-        Application Config
+      <a href="/misc/" class="md-nav__link">
+        Misc
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../config/project/" class="md-nav__link">
-        Project Definition
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -654,77 +538,132 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/lib42/heqet/edit/master/docs/Getting-Started.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/lib42/heqet/edit/master/docs/overview.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
                 
-<h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<h2 id="argo-cd-configuration-management-plugin">Argo-CD Configuration Management Plugin<a class="headerlink" href="#argo-cd-configuration-management-plugin" title="Permanent link">&para;</a></h2>
-<p>Heqet is basically not more then a hacky helm-chart. But to make it's configuration easier &amp; more structured, i needed a way to split the chart from your custom values [or "userdata"].</p>
-<p>Since version 2.2.0 Argo-CD supports "Configuration Management Plugins" [CMP] using sidecar containers. Heqet is utilizing this feature by injecting a sidecar-container into Argo-CD's repo-server pod. The CMP will take care of keeping Heqets code and your userdata up-to-date.</p>
-<p>Thanks to this great feature of Argo-CD, your custom configuration &amp; heqet's helm chart can be updated independantly.</p>
-<h3 id="example-configuration-using-argo-cd-helm-chart">Example Configuration using Argo-CD Helm-Chart<a class="headerlink" href="#example-configuration-using-argo-cd-helm-chart" title="Permanent link">&para;</a></h3>
-<p>In this example we are using the official <a href="https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd">Argo-CD Helm Chart</a>:</p>
-<p>Here is a incomplere snippet from the <code>values.yaml</code>:</p>
-<pre><code class="language-yaml">repoServer:
-  # We'll need these for the sidecar injection to work:
-  volumes:
-  - name: var-files
-    emptyDir: {}
-  - name: plugins
-    emptyDir: {}
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<p>This page gives you a quick overview about the main components &amp; terminology of heqet.</p>
+<h3 id="apps">Apps<a class="headerlink" href="#apps" title="Permanent link">&para;</a></h3>
+<p>Apps are Helm-Charts to deploy. Every app is part of a Project &amp; needs to be listed in the <code>apps</code>-list inside the <code>project.yaml</code>. Every app will become an Argo-CD <code>Application</code>-CRD. The <code>Application</code>s configuration can be changed on a global base inside the <code>values.yaml</code>, at project level inside the <code>project.yaml</code> or on app level inside the app definition.</p>
+<h3 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h3>
+<p>Projects are collections of Apps. Every project will become a <code>Namespace</code> and a Argo-CD Project. The name of the project, namespace and project will depend on the name of the project-directory but can also be configured in the <code>project.yaml</code>.</p>
+<p>Projects can also contain <code>NetworkPolicies</code> and static manifests usind the <code>manifests</code> folder inside the project directory.</p>
+<h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<p>Resources or also called "Addons" or "Generators" are additional helper functions that can create additinal Kubernetes resources like <code>NetworkPolicy</code>s or <code>VaultSecrets</code>.</p>
+<p>Eg. NetworkPolicies can be predefined, grouped &amp; later applied in multiple apps.</p>
+<h4 id="networkpolicies-networkpolicyyaml">NetworkPolicies [networkpolicy.yaml]<a class="headerlink" href="#networkpolicies-networkpolicyyaml" title="Permanent link">&para;</a></h4>
+<h5 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h5>
+<p>The NetworkPolicy-Addon has a few global configuration options. Like which polcies to apply by default &amp; if the communication inside a Namespace should always be allowed.</p>
+<pre><code class="language-yaml">networkPolicy:
+  config:
+    # Generate NetworkPolicy to allow communication inside of the project namespace?
+    # Only gets applied when other networkpolices are active on the project
+    allowNamespace: true
 
-  # Shared plugin directory
-  volumeMounts:
-  - mountPath: /home/argocd/cmp-server/plugins
-    name: plugins
-
-  # This copies the CMP-Server for the sidecar
-  initContainers:
-  - name: copy-cmp-server
-    image: quay.io/argoproj/argocd:latest
-    command:
-    - cp
-    - -n
-    - /usr/local/bin/argocd
-    - /var/run/argocd/argocd-cmp-server
-    volumeMounts:
-      - mountPath: /var/run/argocd
-        name: var-files
-
-  # Heqet Sidecar:
-  extraContainers:
-  - name: cmp-heqet
-    command: [/var/run/argocd/argocd-cmp-server]
-    image: lib42/heqet-cli:latest
-    securityContext:
-      runAsNonRoot: true
-      runAsUser: 999
-    volumeMounts:
-      - mountPath: /var/run/argocd
-        name: var-files
-      - mountPath: /home/argocd/cmp-server/plugins
-        name: plugins
-      - mountPath: /tmp
-        name: tmp-dir
+    default:
+      groups: []
+      rules: []
 </code></pre>
-<p>Notice: Make sure the repo-server &amp; sidecar use the same /tmp-volume!</p>
-<h2 id="creating-your-userdata-git-repository">Creating your userdata git repository<a class="headerlink" href="#creating-your-userdata-git-repository" title="Permanent link">&para;</a></h2>
-<p>When the CMP is setup, it's time to deploy your first app using heqet. For this you'll need a "userdata"-repo. </p>
-<p>For an example, check out my homelab config: <a href="https://github.com/Nold360/hive-apps/">hive-apps</a></p>
-<p>One important file is the <code>Heqetfile</code>. It's required to make the CMP work &amp; will be used to determine which heqet-version / branch to use.</p>
-<p>Example Heqetfile:</p>
-<pre><code class="language-bash"># Heqetfile
-heqet_repo=https://github.com/lib42/heqet.git
-heqet_revision=v3
-heqet_path=charts/heqet
-heqet_values=values.yaml
+<h5 id="policies">Policies<a class="headerlink" href="#policies" title="Permanent link">&para;</a></h5>
+<p>NetworkPolicies are defined in the Kubernetes spec, but inside a dict <code>networkPolicy.rules</code>:</p>
+<pre><code class="language-yaml">networkPolicy:
+  rules:
+    allow-dns:
+      podSelector: {}
+      policyTypes:
+      - Egress
+      egress:
+      - ports:
+        - port: 53
+          protocol: UDP
+        to:
+        - namespaceSelector: {}
+
+    allow-ingress:
+      podSelector: {}
+      policyTypes:
+      - Ingress
+      ingress:
+      - from:
+        - namespaceSelector:
+            matchLabels:
+              app.heqet.gnu.one/name: ingress-external
 </code></pre>
-<p>Normally you wouldn't need to change these options unless you want to use your own fork of heqet.</p>
-<h2 id="creating-a-new-project">Creating a new project<a class="headerlink" href="#creating-a-new-project" title="Permanent link">&para;</a></h2>
-<p>Copy the <code>example/project</code> folder to <code>charts/heqet/projects/name-of-your-project</code>. It contains a template for the <code>project.yaml</code> and also the <code>values</code> directory.</p>
-<p>In the <code>values</code> directory you can simple create a new .yaml file, this the name of the app it belongs to. [same name as defined in the <code>project.yaml</code> by you. </p>
+<p>Notice: Heqet will apply annotations to every namespace e.g. <code>app.heqet.gnu.one/name</code> containing the name of the app. This way we can easily predefine policies that apply on a specific app.</p>
+<h5 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h5>
+<p>Now comes the heqet magic! NetworkPolcies can be grouped and groups of NetworkPolcies can be applied to Projects.</p>
+<pre><code class="language-yaml">networkPolicy:
+  groups:
+    internet:
+      - allow-dns
+      - allow-proxy
+      - allow-ingress
+
+  rules:
+    allow-dns:
+      [...]
+    allow-proxy:
+      [...]
+    allow-ingress:
+      [...]
+</code></pre>
+<pre><code class="language-yaml">config:
+  description: Gitea Git Server
+  networkPolicy:
+    groups:
+    - internet
+    rules:
+    - allow-ssh
+</code></pre>
+<h4 id="snippets">Snippets<a class="headerlink" href="#snippets" title="Permanent link">&para;</a></h4>
+<p>Value snippets can be used, when multiple apps use the same value structure. A good example for this are the charts by the <a href="https://k8s-at-home.com/">K8s-at-home project</a>. </p>
+<p>Here's an example for <code>resources/snippets/noRoot.yaml</code>:</p>
+<pre><code class="language-yaml">securityContext:
+  runAsNonRoot: true
+  privileged: false
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+</code></pre>
+<p>Once create we can <code>include</code> this snippet into out app like this [<code>project.yaml</code>]:</p>
+<pre><code class="language-yaml">config: 
+  [...]
+
+apps:
+- name: my-app
+  include:
+  - noRoot
+</code></pre>
+<h4 id="repos">Repos<a class="headerlink" href="#repos" title="Permanent link">&para;</a></h4>
+<p>We can add Helm-Chart repositories to Argo-CD like this: [<code>resources/repos.yaml</code>]</p>
+<pre><code class="language-yaml"># Parameters:
+# name-of-repo:
+#   url: https://...
+#   type: [default: helm | git]
+#
+repos:
+  argo:
+    url: https://argoproj.github.io/argo-helm
+  bitnami:
+    url: https://charts.bitnami.com/bitnami
+  k8s-at-home:
+    url: https://k8s-at-home.com/charts
+</code></pre>
+<p>These repos can also be applied to projects or apps. In this example <code>my-app</code> uses the <code>bitnami</code>-repo, while <code>another-app</code> uses the projects default repo <code>k8s-at-home</code>.</p>
+<p>[<code>project.yaml</code>]:</p>
+<pre><code class="language-yaml">config:
+  repo: k8s-at-home
+
+apps:
+- name: my-app
+  repo: bitnami
+
+- name: another-app
+</code></pre>
                 
               
             </article>
@@ -743,7 +682,7 @@ heqet_values=values.yaml
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Filestructure/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Directory &amp; Filestructure" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Heqet" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -752,20 +691,20 @@ heqet_values=values.yaml
               <span class="md-footer__direction">
                 Previous
               </span>
-              Directory & Filestructure
+              Heqet
             </div>
           </div>
         </a>
       
       
         
-        <a href="../Overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview" rel="next">
+        <a href="../getting-started/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting Started" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Overview
+              Getting Started
             </div>
           </div>
           <div class="md-footer__button md-icon">

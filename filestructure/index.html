@@ -13,7 +13,7 @@
     
     
       
-        <title>Heqet on K3s - Heqet - Simple ArgoCD Bootstrapping</title>
+        <title>Filestructure - Heqet - Simple ArgoCD Bootstrapping</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heqet-on-k3s" class="md-skip">
+        <a href="#filestructure" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Heqet on K3s
+              Filestructure
             
           </span>
         </div>
@@ -199,32 +199,20 @@
 
 
   <li class="md-tabs__item">
-    <a href="../Filestructure/" class="md-tabs__link">
-      Directory & Filestructure
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../Getting-Started/" class="md-tabs__link">
-      Getting Started
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../Overview/" class="md-tabs__link">
+    <a href="../overview/" class="md-tabs__link">
       Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../getting-started/" class="md-tabs__link">
+      Getting Started
     </a>
   </li>
 
@@ -238,7 +226,7 @@
 
   <li class="md-tabs__item">
     <a href="./" class="md-tabs__link md-tabs__link--active">
-      Heqet on K3s
+      Filestructure
     </a>
   </li>
 
@@ -249,8 +237,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../vault/" class="md-tabs__link">
-      Vault
+    <a href="/config/" class="md-tabs__link">
+      Configuration
     </a>
   </li>
 
@@ -260,15 +248,11 @@
   
 
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../addons/" class="md-tabs__link">
-        Addons
-      </a>
-    </li>
-  
+  <li class="md-tabs__item">
+    <a href="/addons/" class="md-tabs__link">
+      Addons
+    </a>
+  </li>
 
       
         
@@ -276,15 +260,11 @@
   
 
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../config/application/" class="md-tabs__link">
-        Config
-      </a>
-    </li>
-  
+  <li class="md-tabs__item">
+    <a href="/misc/" class="md-tabs__link">
+      Misc
+    </a>
+  </li>
 
       
     </ul>
@@ -355,38 +335,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../Filestructure/" class="md-nav__link">
-        Directory & Filestructure
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Getting-Started/" class="md-nav__link">
-        Getting Started
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
       </a>
     </li>
   
@@ -410,12 +375,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Heqet on K3s
+          Filestructure
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Heqet on K3s
+        Filestructure
       </a>
       
         
@@ -434,29 +399,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bootstrap-k3s" class="md-nav__link">
-    Bootstrap K3s
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bootstrap-argocd-using-helm" class="md-nav__link">
-    Bootstrap ArgoCD using Helm
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bootstrap-heqet" class="md-nav__link">
-    Bootstrap Heqet
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#profit" class="md-nav__link">
-    Profit!
+  <a href="#overview" class="md-nav__link">
+    Overview
   </a>
   
 </li>
@@ -477,8 +421,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../vault/" class="md-nav__link">
-        Vault
+      <a href="/config/" class="md-nav__link">
+        Configuration
       </a>
     </li>
   
@@ -491,88 +435,13 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_7">
-          Addons
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Addons" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
-          <span class="md-nav__icon md-icon"></span>
-          Addons
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../addons/" class="md-nav__link">
+      <a href="/addons/" class="md-nav__link">
         Addons
       </a>
     </li>
   
 
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../addons/networkpolicy/" class="md-nav__link">
-        NetworkPolicy
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../addons/repos/" class="md-nav__link">
-        Repositories
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../addons/vault/" class="md-nav__link">
-        VaultSecret Generator
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
     
       
       
@@ -581,57 +450,10 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_8">
-          Config
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Config" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
-          <span class="md-nav__icon md-icon"></span>
-          Config
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../config/application/" class="md-nav__link">
-        Application Config
+      <a href="/misc/" class="md-nav__link">
+        Misc
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../config/project/" class="md-nav__link">
-        Project Definition
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -648,112 +470,29 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/lib42/heqet/edit/master/docs/k3s.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/lib42/heqet/edit/master/docs/filestructure.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
                 
-<h1 id="heqet-on-k3s">Heqet on K3s<a class="headerlink" href="#heqet-on-k3s" title="Permanent link">&para;</a></h1>
-<h2 id="bootstrap-k3s">Bootstrap K3s<a class="headerlink" href="#bootstrap-k3s" title="Permanent link">&para;</a></h2>
-<p>See: <a href="https://rancher.com/docs/k3s/latest/en/installation/install-options/">K3s Install Options</a></p>
-<p>Or if you are feeling lucky:</p>
-<pre><code class="language-shellsession">curl -sfL https://get.k3s.io | sh -
-</code></pre>
-<h2 id="bootstrap-argocd-using-helm">Bootstrap ArgoCD using Helm<a class="headerlink" href="#bootstrap-argocd-using-helm" title="Permanent link">&para;</a></h2>
-<p><code>kubectl apply -f manifests/argocd-helm.yaml</code> </p>
-<pre><code class="language-yaml">---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: argocd
----
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
-metadata:
-  name: argocd
-  namespace: kube-system
-spec:
-  chart: argo-cd
-  repo: https://argoproj.github.io/argo-helm
-  targetNamespace: argocd
-  set:
-    configs.secret.argocdServerAdminPassword: &quot;$2y$10$IuaM9Ad1mPMycjnStOdNc.wjRlLtI8448F/hS.eA0XJLH9r/ZwRv.&quot;
-  valuesContent: |-
-    controller:
-      containerSecurityContext:
-        capabilities:
-          drop:
-           - all
-      readOnlyRootFilesystem: true
-    dex:
-      containerSecurityContext:
-        capabilities:
-          drop:
-           - all
-      readOnlyRootFilesystem: true
-    redis:
-      containerSecurityContext:
-        capabilities:
-          drop:
-           - all
-      readOnlyRootFilesystem: true
-    server:
-      containerSecurityContext:
-        capabilities:
-          drop:
-           - all
-      readOnlyRootFilesystem: true
-      ingress:
-        enabled: true
-        hosts:
-          - argocd.k3s
-      extraArgs:
-        - --insecure
-    reposerver:
-      containerSecurityContext:
-        capabilities:
-          drop:
-           - all
-      readOnlyRootFilesystem: true
-</code></pre>
-<p>The password in this example is <code>argocd</code>.</p>
-<h2 id="bootstrap-heqet">Bootstrap Heqet<a class="headerlink" href="#bootstrap-heqet" title="Permanent link">&para;</a></h2>
-<p><code>kubectl apply -f manifests/heqet-apps.yaml</code></p>
-<pre><code class="language-yaml">---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: heqet
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: heqet
-  namespace: argocd
-spec:
-  destination:
-    namespace: heqet
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: .
-    repoURL: 'https://github.com/nold360/heqet'
-    targetRevision: test
-    helm:
-      valueFiles:
-        - values.yaml
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
-</code></pre>
-<h2 id="profit">Profit!<a class="headerlink" href="#profit" title="Permanent link">&para;</a></h2>
-<p>Now K3s should be setup: </p>
+<h1 id="filestructure">Filestructure<a class="headerlink" href="#filestructure" title="Permanent link">&para;</a></h1>
+<p>Heqet is highly opinionated about the filestructure of the userdata repository. Here is a quick overview how it should look like:</p>
 <ul>
-<li>ArgoCD should be deployed by K3s-Helm-Operator</li>
-<li>The Heqet-Application will bootstrap ArgoCD </li>
-<li>ArgoCD will take control of all Application configuration in heqet</li>
+<li><code>Heqetfile</code> - Important config file for ArgoCD/heqet. See <a href="/heqet/config/heqetfile">Heqetfile</a></li>
+<li><code>projects/</code> - This directory contains all your Application/Project config</li>
+<li><code>name-of-project/</code> - This directory name represents the name of our project<ul>
+<li><code>project.yaml</code> - The most important config, containing all our applications of this project</li>
+<li><code>values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code></li>
+<li><code>name-of-app.yaml</code> - Values file for the application "name-of-app"</li>
+<li><code>manifests/</code> - Static YAML-files for the project</li>
 </ul>
+</li>
+<li><code>resources/</code> - This directory contains all global config, like NetworkPolcies, Repos </li>
+<li><code>manifests/</code> - Can be used for static YAML-Manifests</li>
+<li><code>snippets/</code> - Value snippets that can be included using <code>include</code>-Array in apps</li>
+</ul>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><img alt="Heqet Overview" src="https://nold360.github.io/heqet/assets/heqet-directory-overview.jpg" /></p>
                 
               
             </article>
@@ -772,7 +511,7 @@ spec:
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
+        <a href="../getting-started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -781,26 +520,11 @@ spec:
               <span class="md-footer__direction">
                 Previous
               </span>
-              Overview
+              Getting Started
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../vault/" class="md-footer__link md-footer__link--next" aria-label="Next: Vault" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Vault
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
