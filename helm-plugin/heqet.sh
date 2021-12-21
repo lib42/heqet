@@ -1,7 +1,24 @@
-#!/bin/sh
-set -u
+#!/bin/bash
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+
 set -e
-CLI_VERSION="0.1"
+
+usage() {
+cat << EOF
+Setup, update & template heqet application configuration.
+
+All commands need to be executed with Heqetfile in current working directory.
+
+Available Commands:
+  helm heqet setup       Setup heqet for current working directory. Requires Heqetfile.
+  helm heqet update      Update heqet after setup
+  helm heqet template    Template heqet configuration
+  helm heqet validate    Validate heqet configuration
+  helm heqet generate    Combination of update and template [for CI/CD usage]
+  helm heqet help        Show this message
+EOF
+}
 
 # Heqet Config
 if [ -f Heqetfile ] ; then
@@ -11,22 +28,14 @@ else
   exit 1
 fi
 
-HEQET_REPO="${heqet_repo:-https://github.com/nold360/heqet.git}"
+HEQET_REPO="${heqet_repo:-https://github.com/lib42/heqet.git}"
 HEQET_REVISION="${heqet_revision:-v3}"
 HEQET_PATH="${heqet_path:-charts/heqet}"
 HEQET_VALUES="${heqet_values:-values.yaml}"
 USERDATA_REPO=$(pwd)
 #USERDATA_REVISION=
 
-HEQET_TMPDIR="${HEQET_TMPDIR:-/tmp/heqet-$(basename $(pwd))}"
-
-# Check for required binaries
-for cmd in helm git ; do
-  if ! type $cmd &>/dev/null ; then
-    echo "ERROR: Missing dependency: '$cmd'"
-    exit 1
-  fi
-done
+HEQET_TMPDIR="${HEQET_TMPDIR:-${HELM_DATA_HOME}/heqet}"
 
 # Clone Heqet-Code & add current directory as userdata submodule
 function setup {
@@ -53,7 +62,7 @@ function update {
     git -C ${HEQET_TMPDIR} checkout ${HEQET_REVISION}
     return $?
   else
-    echo "ERROR: Directory '${HEQET_TMPDIR}' doesn't seem to be a git repo. Did you call 'hqt setup'?"
+    echo "ERROR: Directory '${HEQET_TMPDIR}' doesn't seem to be a git repo. Did you call 'helm heqet setup'?"
     return 1
   fi
 }
@@ -61,10 +70,10 @@ function update {
 # Template Helm-Chart
 function template {
   if [ -f ${HEQET_TMPDIR}/${HEQET_PATH}/Chart.yaml ] ; then
-    helm template ${HEQET_TMPDIR}/${HEQET_PATH} -f ${HEQET_VALUES}
+    helm template $@ ${HEQET_TMPDIR}/${HEQET_PATH} -f ${HEQET_VALUES}
     return $?
   else
-    echo "ERROR: Couldn't find Chart.yaml in $HEQET_TMPDIR/${HEQET_PATH}. Did you call 'hqt setup'?"
+    echo "ERROR: Couldn't find Chart.yaml in $HEQET_TMPDIR/${HEQET_PATH}. Did you call 'helm heqet setup'?"
     return 1
   fi
 }
@@ -80,20 +89,14 @@ function validate {
   fi
 }
 
-# Print help
-function help {
-  echo "Usage: $0 <setup|update|template|validate|generate>"
-  echo "Heqet-CLI v${CLI_VERSION} to setup heqet for helm templating."
-  echo "Setup requires ENV-Variables 'USERDATA_REPO' & 'USERDATA_REVISION' of configuration git repo"
-}
-
-param="${1:-help}"
-case $param in
+COMMAND="$1"
+case ${COMMAND} in
   "setup") setup; exit $? ;;
   "update") update; exit $? ;;
-  "template") template; exit $? ;;
+  "template") template $@; exit $? ;;
   "validate") validate; exit $? ;;
   # This is used by the ArgoCD CM-Plugin:
   "generate") update &>/dev/null && template 2>/dev/null; exit $? ;;
-  *) help; exit 0 ;;
+  *) usage; exit 0 ;;
 esac
+exit 0

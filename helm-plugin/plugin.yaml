@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+
+name: "heqet"
+version: "1.0.0"
+usage: "Setup & Parse Heqet Project Configuration"
+description: |-
+  This plugin is ment to be used with Heqet configurations
+ignoreFlags: false
+useTunnel: false
+command: "$HELM_PLUGIN_DIR/heqet.sh"
