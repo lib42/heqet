@@ -6,4 +6,4 @@ RUN helm plugin install https://github.com/lib42/helm-heqet
 
 # Clear entrypoint & cmd
 ENTRYPOINT
-CMD
+CMD [ "sh" ]
