@@ -1,5 +1,5 @@
 site_name: Heqet - Simple ArgoCD Bootstrapping
-repo_url: https://github.com/nold360/heqet
+repo_url: https://github.com/lib42/heqet
 remote_branch: gh-deploy
 theme:
   logo: assets/heqet_logo.png
