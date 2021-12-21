@@ -26,6 +26,18 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
+nav:
+  - Heqet: index.md
+  - Overview: overview.md
+  - 'Getting Started': getting-started.md
+  - Filestructure: filestructure.md
+  - Configuration: '/config/'
+  - Addons: '/addons/'
+  - Misc: '/misc/'
+
 markdown_extensions:
   - toc:
       permalink: true
+
+plugins:
+  - search

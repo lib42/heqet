@@ -1,5 +1,8 @@
-# Directory & Filestructure
+# Filestructure
 
+Heqet is highly opinionated about the filestructure of the userdata repository. Here is a quick overview how it should look like:
+
+* `Heqetfile` - Important config file for ArgoCD/heqet. See [Heqetfile](/heqet/config/heqetfile)
 * `projects/` - This directory contains all your Application/Project config
   * `name-of-project/` - This directory name represents the name of our project
     * `project.yaml` - The most important config, containing all our applications of this project
