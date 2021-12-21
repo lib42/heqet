@@ -9,6 +9,7 @@ steps:
     GH_TOKEN:
       from_secret: gh_token
   commands:
+  - pip install mkdocs-include-dir-to-nav
   - git remote add gh-token "https://$${GH_TOKEN}@github.com/lib42/heqet.git"
   - git fetch gh-token && git fetch gh-token gh-deploy:gh-deploy
   - cp README.md docs/index.md

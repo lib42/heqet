@@ -31,9 +31,9 @@ nav:
   - Overview: overview.md
   - 'Getting Started': getting-started.md
   - Filestructure: filestructure.md
-  - Configuration: '/config/'
-  - Addons: '/addons/'
-  - Misc: '/misc/'
+  - Configuration: 'config'
+  - Addons: 'addons'
+  - Misc: 'misc'
 
 markdown_extensions:
   - toc:
@@ -41,3 +41,4 @@ markdown_extensions:
 
 plugins:
   - search
+  - include_dir_to_nav
