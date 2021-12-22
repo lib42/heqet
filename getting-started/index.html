@@ -252,7 +252,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../config/Heqetfile/" class="md-tabs__link">
+      <a href="../config/application/" class="md-tabs__link">
         Configuration
       </a>
     </li>
@@ -513,8 +513,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/Heqetfile/" class="md-nav__link">
-        Heqetfile
+      <a href="../config/application/" class="md-nav__link">
+        Application Config
       </a>
     </li>
   
@@ -527,8 +527,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/application/" class="md-nav__link">
-        Application Config
+      <a href="../config/heqetfile/" class="md-nav__link">
+        Heqetfile
       </a>
     </li>
   
@@ -713,7 +713,7 @@
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
 <h2 id="argo-cd-configuration-management-plugin">Argo-CD Configuration Management Plugin<a class="headerlink" href="#argo-cd-configuration-management-plugin" title="Permanent link">&para;</a></h2>
 <p>Heqet is basically not more then a hacky helm-chart. But to make it's configuration easier &amp; more structured, i needed a way to split the chart from your custom values [or "userdata"].</p>
-<p>Since version 2.2.0 Argo-CD supports "Configuration Management Plugins" [CMP] using sidecar containers. Heqet is utilizing this feature by injecting a sidecar-container into Argo-CD's repo-server pod. The CMP will take care of keeping Heqets code and your userdata up-to-date.</p>
+<p>Since version 2.2.0 Argo-CD supports "Configuration Management Plugins V2" [CMP] using sidecar containers. Heqet is utilizing this feature by injecting a sidecar-container into Argo-CD's repo-server pod. The CMP will take care of keeping Heqets code and your userdata up-to-date.</p>
 <p>Thanks to this great feature of Argo-CD, your custom configuration &amp; heqet's helm chart can be updated independantly.</p>
 <h3 id="example-configuration-using-argo-cd-helm-chart">Example Configuration using Argo-CD Helm-Chart<a class="headerlink" href="#example-configuration-using-argo-cd-helm-chart" title="Permanent link">&para;</a></h3>
 <p>In this example we are using the official <a href="https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd">Argo-CD Helm Chart</a>:</p>
@@ -767,12 +767,13 @@
 <p>One important file is the <code>Heqetfile</code>. It's required to make the CMP work &amp; will be used to determine which heqet-version / branch to use.</p>
 <p>Example Heqetfile:</p>
 <pre><code class="language-bash"># Heqetfile
+
 heqet_repo=https://github.com/lib42/heqet.git
 heqet_revision=v3
 heqet_path=charts/heqet
 heqet_values=values.yaml
 </code></pre>
-<p>Normally you wouldn't need to change these options unless you want to use your own fork of heqet. See also <a href="/heqet/config/Heqetfile">Heqetfile</a></p>
+<p>Normally you wouldn't need to change these options unless you want to use your own fork of heqet. See also <a href="/heqet/config/heqetfile">Heqetfile</a></p>
 <h2 id="creating-a-new-project">Creating a new project<a class="headerlink" href="#creating-a-new-project" title="Permanent link">&para;</a></h2>
 <p>Copy the <code>example/project</code> folder to <code>charts/heqet/projects/name-of-your-project</code>. It contains a template for the <code>project.yaml</code> and also the <code>values</code> directory.</p>
 <p>In the <code>values</code> directory you can simple create a new .yaml file, this the name of the app it belongs to. [same name as defined in the <code>project.yaml</code> by you. </p>

@@ -252,7 +252,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../Heqetfile/" class="md-tabs__link md-tabs__link--active">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         Configuration
       </a>
     </li>
@@ -445,20 +445,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../Heqetfile/" class="md-nav__link">
-        Heqetfile
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -519,6 +505,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../heqetfile/" class="md-nav__link">
+        Heqetfile
+      </a>
     </li>
   
 
@@ -720,14 +720,14 @@
 <tr>
 <td>repoURL</td>
 <td>string</td>
-<td><code>"https://github.com/nold360/heqet"</code></td>
+<td><code>"https://github.com/lib42/heqet"</code></td>
 <td>URL to git or Helmchart repo</td>
 </tr>
 <tr>
 <td>or <code>repo</code></td>
 <td>string</td>
 <td><code>"heqet"</code></td>
-<td>Name of a predefinied Helm/Git-Repo</td>
+<td>Name of a predefinied Helm/Git-Repo <a href="/heqet/addons/repos/">see addons/repos</a></td>
 </tr>
 <tr>
 <td>path</td>
@@ -797,18 +797,11 @@
 <td>K8s Cluster to deploy to</td>
 </tr>
 <tr>
-<td>automated.prune</td>
-<td>bool</td>
-<td><code>false</code></td>
-<td><code>true</code></td>
-<td>ArgoCD automatic prune app</td>
-</tr>
-<tr>
-<td>automated.selfHeal</td>
-<td>bool</td>
-<td><code>false</code></td>
-<td><code>true</code></td>
-<td>ArgoCD automatic self-heal app</td>
+<td>syncPolicy</td>
+<td>dict</td>
+<td><code>{}</code></td>
+<td>See <a href="https://github.com/lib42/heqet/blob/v3/charts/heqet/values.yaml#L12">values.yaml</a></td>
+<td>ArgoCD automatic syncPolicy</td>
 </tr>
 <tr>
 <td>ignoreDiff</td>
@@ -834,7 +827,7 @@
 </tbody>
 </table>
 <h2 id="full-example">Full Example<a class="headerlink" href="#full-example" title="Permanent link">&para;</a></h2>
-<p>Check out the <code>hive</code>-Branch of this repo for my current homelab setup.</p>
+<p>Check out my <a href="https://github.com/nold360/hive-apps">Homelab config</a></p>
                 
               
             </article>
@@ -853,7 +846,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Heqetfile/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Heqetfile" rel="prev">
+        <a href="../../filestructure/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Filestructure" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -862,20 +855,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Heqetfile
+              Filestructure
             </div>
           </div>
         </a>
       
       
         
-        <a href="../project/" class="md-footer__link md-footer__link--next" aria-label="Next: Project Definition" rel="next">
+        <a href="../heqetfile/" class="md-footer__link md-footer__link--next" aria-label="Next: Heqetfile" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Project Definition
+              Heqetfile
             </div>
           </div>
           <div class="md-footer__button md-icon">

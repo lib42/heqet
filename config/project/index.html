@@ -252,7 +252,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../Heqetfile/" class="md-tabs__link md-tabs__link--active">
+      <a href="../application/" class="md-tabs__link md-tabs__link--active">
         Configuration
       </a>
     </li>
@@ -447,8 +447,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Heqetfile/" class="md-nav__link">
-        Heqetfile
+      <a href="../application/" class="md-nav__link">
+        Application Config
       </a>
     </li>
   
@@ -461,8 +461,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../application/" class="md-nav__link">
-        Application Config
+      <a href="../heqetfile/" class="md-nav__link">
+        Heqetfile
       </a>
     </li>
   
@@ -511,6 +511,13 @@
         <li class="md-nav__item">
   <a href="#project-config" class="md-nav__link">
     Project Config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-defaults" class="md-nav__link">
+    Project Defaults
   </a>
   
 </li>
@@ -726,11 +733,14 @@
 <td>networkPolicy</td>
 <td>dict</td>
 <td>None</td>
-<td>See <a href="https://nold360.github.io/heqet/addons/networkpolicy">addons/networkpolicy</a></td>
+<td>See <a href="/addons/networkpolicy">addons/networkpolicy</a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<h2 id="project-defaults">Project Defaults<a class="headerlink" href="#project-defaults" title="Permanent link">&para;</a></h2>
+<p>There is a dedicated hash for all ArgoCD <code>AppProject</code> CRDs getting created. It's called <code>projectDefaults</code> and all values inside it get directly applied to all AppProjects.</p>
+<p><a href="https://github.com/lib42/heqet/blob/v3/charts/heqet/values.yaml#L32">See values.yaml</a></p>
                 
               
             </article>
@@ -749,7 +759,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../application/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Application Config" rel="prev">
+        <a href="../heqetfile/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Heqetfile" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -758,7 +768,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Application Config
+              Heqetfile
             </div>
           </div>
         </a>
