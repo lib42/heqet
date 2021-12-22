@@ -4,7 +4,7 @@
 
 Heqet is basically not more then a hacky helm-chart. But to make it's configuration easier & more structured, i needed a way to split the chart from your custom values [or "userdata"].
 
-Since version 2.2.0 Argo-CD supports "Configuration Management Plugins" [CMP] using sidecar containers. Heqet is utilizing this feature by injecting a sidecar-container into Argo-CD's repo-server pod. The CMP will take care of keeping Heqets code and your userdata up-to-date.
+Since version 2.2.0 Argo-CD supports "Configuration Management Plugins V2" [CMP] using sidecar containers. Heqet is utilizing this feature by injecting a sidecar-container into Argo-CD's repo-server pod. The CMP will take care of keeping Heqets code and your userdata up-to-date.
 
 Thanks to this great feature of Argo-CD, your custom configuration & heqet's helm chart can be updated independantly.
 
@@ -72,13 +72,14 @@ One important file is the `Heqetfile`. It's required to make the CMP work & will
 Example Heqetfile:
 ``` bash
 # Heqetfile
+
 heqet_repo=https://github.com/lib42/heqet.git
 heqet_revision=v3
 heqet_path=charts/heqet
 heqet_values=values.yaml
 ```
 
-Normally you wouldn't need to change these options unless you want to use your own fork of heqet. See also [Heqetfile](/heqet/config/Heqetfile)
+Normally you wouldn't need to change these options unless you want to use your own fork of heqet. See also [Heqetfile](/heqet/config/heqetfile)
 
 ## Creating a new project
 

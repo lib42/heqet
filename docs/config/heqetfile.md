@@ -11,11 +11,13 @@ Here is a simple yet complete example of a `Heqetfile`. Make sure to place it in
 ``` bash
 # Heqetfile
 #
-# _repo & _revision define the source & branch/tag to checkout
-# _path is the path to the heqet chart inside of the repo
-#
+# repo & branch/tag of heqet to use
 heqet_repo=https://github.com/lib42/heqet.git
 heqet_revision=v3
+
+# Path to the heqet chart inside of the repo
 heqet_path=charts/heqet
+
+# Values file for defaults
 heqet_values=values.yaml
 ``` 

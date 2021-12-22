@@ -15,4 +15,4 @@ Heqet is highly opinionated about the filestructure of the userdata repository. 
 
 ## Overview
 
-![Heqet Overview](https://nold360.github.io/heqet/assets/heqet-directory-overview.jpg)
+![Heqet Overview](https://lib42.github.io/heqet/assets/heqet-directory-overview.jpg)
