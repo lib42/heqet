@@ -70,6 +70,7 @@ Installing heqet is quite simple:
 
 |- Name -|- Description -|
 |----------------------------------------------------|--------------------------|
+| [Heqet-Apps](https://github.com/lib42/heqet-apps)  | Official Example Repo    |
 | [Hive-Apps](https://github.com/Nold360/hive-apps/) | My Homelab configuration |
 
 ## Docs
