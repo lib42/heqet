@@ -12,36 +12,11 @@ Thanks to this great feature of Argo-CD, your custom configuration & heqet's hel
 
 In this example we are using the official [Argo-CD Helm Chart](https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd):
 
-Here is a incomplere snippet from the `values.yaml`:
+Here is a incomplere snippet, find the full values.yaml [here](https://github.com/lib42/heqet-apps/blob/main/projects/argocd/values/argocd.yaml). But these is basically the full configuration to add the Heqet configuration management plugin to Argo-CD:
 
 ``` yaml
 repoServer:
-  # We'll need these for the sidecar injection to work:
-  volumes:
-  - name: var-files
-    emptyDir: {}
-  - name: plugins
-    emptyDir: {}
-
-  # Shared plugin directory
-  volumeMounts:
-  - mountPath: /home/argocd/cmp-server/plugins
-    name: plugins
-
-  # This copies the CMP-Server for the sidecar
-  initContainers:
-  - name: copy-cmp-server
-    image: quay.io/argoproj/argocd:latest
-    command:
-    - cp
-    - -n
-    - /usr/local/bin/argocd
-    - /var/run/argocd/argocd-cmp-server
-    volumeMounts:
-      - mountPath: /var/run/argocd
-        name: var-files
-
-  # Heqet Sidecar:
+  # Heqet Sidecar Container:
   extraContainers:
   - name: cmp-heqet
     command: [/var/run/argocd/argocd-cmp-server]
@@ -65,7 +40,7 @@ Notice: Make sure the repo-server & sidecar use the same /tmp-volume!
 
 When the CMP is setup, it's time to deploy your first app using heqet. For this you'll need a "userdata"-repo. 
 
-For an example, check out my homelab config: [hive-apps](https://github.com/Nold360/hive-apps/)
+Feel free to fork our userdata example repository:  [hive-apps](https://github.com/Nold360/hive-apps/)
 
 One important file is the `Heqetfile`. It's required to make the CMP work & will be used to determine which heqet-version / branch to use.
 

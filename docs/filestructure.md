@@ -1,6 +1,28 @@
-# Filestructure
+# Configuration Filestructure
 
 Heqet is highly opinionated about the filestructure of the userdata repository. Here is a quick overview how it should look like:
+
+This is a quick overview how your "userdata" repository needs to be structured:
+```
+├── bootstrap.yaml            # Used for initial bootstrap of Heqet
+├── Heqetfile                 # Required for Heqet to work
+├── projects/
+│   └── argocd/               # Every project has it's own folder
+│       ├── project.yml       # Main project configuration
+│       ├── manifests/        # Project related static yaml manifests
+│       └── values/
+│           └── argocd.yaml   # Every app can get it's own values file
+├── README.md
+├── renovate.json             # Preconfigured renovatebot for heqet config
+├── resources/
+│   ├── manifests/            # Your static manifests go here
+│   │   └── foobar.yaml       
+│   ├── networkpolicy.yml     # NetworkPolicies & create groups of policies
+│   ├── repos.yml             # Helm Chart Repositories aliases
+│   └── snippets/             # Value Snippets can be included into apps
+│       └── tmpdirs.yaml      #   \ They will be merged with all other app values 
+└── values.yaml               # Defaults & main config for heqet
+```
 
 * `Heqetfile` - Important config file for ArgoCD/heqet. See [Heqetfile](/heqet/config/heqetfile)
 * `projects/` - This directory contains all your Application/Project config

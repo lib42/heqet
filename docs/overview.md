@@ -2,27 +2,49 @@
 
 This page gives you a quick overview about the main components & terminology of heqet.
 
-### Apps
+## Repo Structure
+
+```
+├── bootstrap.yaml            # Used for initial bootstrap of Heqet
+├── Heqetfile                 # Required for Heqet to work
+├── projects/
+│   └── argocd/               # Every project has it's own folder
+│       ├── project.yml       # Main project configuration
+│       ├── manifests/        # Project related static yaml manifests
+│       └── values/
+│           └── argocd.yaml   # Every app can get it's own values file
+├── README.md
+├── renovate.json             # Preconfigured renovatebot for heqet config
+├── resources/
+│   ├── manifests/            # Your static manifests go here
+│   │   └── foobar.yaml       
+│   ├── networkpolicy.yml     # NetworkPolicies & create groups of policies
+│   ├── repos.yml             # Helm Chart Repositories aliases
+│   └── snippets/             # Value Snippets can be included into apps
+│       └── tmpdirs.yaml      # They will be merged with all other app values 
+└── values.yaml               # Defaults & main config for heqet
+```
+
+
+## Apps
 
 Apps are Helm-Charts to deploy. Every app is part of a Project & needs to be listed in the `apps`-list inside the `project.yaml`. Every app will become an Argo-CD `Application`-CRD. The `Application`s configuration can be changed on a global base inside the `values.yaml`, at project level inside the `project.yaml` or on app level inside the app definition.
 
-### Projects
+## Projects
 
 Projects are collections of Apps. Every project will become a `Namespace` and a Argo-CD Project. The name of the project, namespace and project will depend on the name of the project-directory but can also be configured in the `project.yaml`.
 
 Projects can also contain `NetworkPolicies` and static manifests usind the `manifests` folder inside the project directory.
 
 
-### Resources
+## Resources
 
 Resources or also called "Addons" or "Generators" are additional helper functions that can create additinal Kubernetes resources like `NetworkPolicy`s or `VaultSecrets`.
 
 Eg. NetworkPolicies can be predefined, grouped & later applied in multiple apps.
 
 
-#### NetworkPolicies [networkpolicy.yaml]
-
-##### Config
+### NetworkPolicies [networkpolicy.yaml]
 
 The NetworkPolicy-Addon has a few global configuration options. Like which polcies to apply by default & if the communication inside a Namespace should always be allowed.
 
@@ -38,7 +60,7 @@ networkPolicy:
       rules: []
 ```
 
-##### Policies
+#### Policies
 
 NetworkPolicies are defined in the Kubernetes spec, but inside a dict `networkPolicy.rules`:
 
@@ -70,7 +92,7 @@ networkPolicy:
 Notice: Heqet will apply annotations to every namespace e.g. `app.heqet.gnu.one/name` containing the name of the app. This way we can easily predefine policies that apply on a specific app.
 
 
-##### Groups
+#### Groups
 
 Now comes the heqet magic! NetworkPolcies can be grouped and groups of NetworkPolcies can be applied to Projects.
 
@@ -91,10 +113,13 @@ networkPolicy:
       [...]
 ```
 
+#### Apply to Project
+
+After defining your polcies you can assign them to one or multiple projects like this:
 
 ``` yaml
 config:
-  description: Gitea Git Server
+  description: Project example with NetworkPolcies applied
   networkPolicy:
     groups:
     - internet
@@ -102,7 +127,7 @@ config:
     - allow-ssh
 ```
 
-#### Snippets
+#### Value Snippets
 
 Value snippets can be used, when multiple apps use the same value structure. A good example for this are the charts by the [K8s-at-home project](https://k8s-at-home.com/). 
 
@@ -159,6 +184,11 @@ config:
 apps:
 - name: my-app
   repo: bitnami
-
+  ...
 - name: another-app
 ```
+
+
+## Addons
+
+Heqet "special" features are called "addons" - [Addons Documentation](https://lib42.github.io/heqet/addons/)

@@ -2,7 +2,7 @@
 
 *Heqet (Egyptian ḥqt, also ḥqtyt "Heqtit") is an Egyptian goddess of fertility.*
 
-Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It's goal is to reduce the need of redundant configuration in a GitOps environment, by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all ArgoCD-Applications, -Projects, Namespaces & more using Argo-CDs [App-of-Apps-Pattern](https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/).
+Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It's goal is to reduce the need of redundant configuration in a GitOps environment, by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all [ArgoCD]*(https://argo-cd.readthedocs.io/en/stable/)-Applications, -Projects, Namespaces & more using Argo-CDs [App-of-Apps-Pattern](https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/).
 
 ## What problem does heqet solve?
 
@@ -18,6 +18,7 @@ Heqet reduces the configuration required to deploy Helm-chart-based applications
 Making GitOps based deployments simple while keeping kubernetes power & customizability.
 
 ## Keyfeatures
+
  * Easy Setup [Just requires Kubernetes + Argo-CD]
  * Simple / DRY application definition & configuration
  * Follows the GitOps principles
@@ -42,28 +43,37 @@ The heqet Configuration-Management-Plugin [CMP] will generate ArgoCD-Application
 
 Heqet is highly opinionated about it's structure. It helps you keeping multiple projects organized. The user configuration is organized like this:
 
-* `/projects/` - This directory contains all your Application/Project config
-* `/projects/name-of-project/` - This directory name represents the name of our project
-* `/projects/name-of-project/project.yaml` - The most important config, containing all our applications & project config
-* `/projects/name-of-project/values/` - Every app in our project can have it's own `values.yaml` here, named: `name-of-app.yaml`
-* `/projects/name-of-project/values/name-of-app.yaml` - Values file for the application "name-of-app"
-* `/projects/name-of-project/manifests/` - Static yaml manifests for your app
+```
+├── bootstrap.yaml            # Used for initial bootstrap of Heqet
+├── Heqetfile                 # Required for Heqet to work
+├── projects/
+│   └── argocd/               # Every project has it's own folder
+│       ├── project.yml       # Main project configuration
+│       ├── manifests/        # Project related static yaml manifests
+│       └── values/
+│           └── argocd.yaml   # Every app can get it's own values file
+├── README.md
+├── renovate.json             # Preconfigured renovatebot for heqet config
+├── resources/
+│   ├── manifests/            # Your static manifests go here
+│   │   └── foobar.yaml       
+│   ├── networkpolicy.yml     # NetworkPolicies & create groups of policies
+│   ├── repos.yml             # Helm Chart Repositories aliases
+│   └── snippets/             # Value Snippets can be included into apps
+│       └── tmpdirs.yaml      #   \ They will be merged with all other app values 
+└── values.yaml               # Defaults & main config for heqet
+```
 
-* `/resources/` - This directory contains all global config, like NetworkPolcies, Repos 
-* `/resources/manifests/` - Can be used for static YAML-Manifests, like CRD's and other global configurations
-* `/resources/snippets/` - Value snippets for your apps
-
+For more see: [Filestructure](https://lib42.github.io/heqet/filestructure/)
 
 ## Installation
 
 Installing heqet is quite simple:
-
-0. Install Argo-CD version >= 2.2.0 on your cluster & set it up to your needs
-1. Configure Argo-CD Plugin
-2. Create your heqet userdata git repository
-3. Configure `manifests/heqet-apps.yaml` to match your Setup
-4. `kubectl apply -f manifests/heqet-apps.yaml`
-5. Create your configuration in `projects` and `resources` folders 
+ - Install [Argo-CD](https://argo-cd.readthedocs.io/en/stable) [Version >= 2.2.0] on your Kubernetes cluster
+ - Configure the Heqet Argo-CD Configuration-Management-Plugin [Getting Started](https://lib42.github.io/heqet/getting-started/)
+ - Create your heqet userdata git repository - [Example Configuration](#example-configuration)
+ - Deploy your first app to [bootstrap Heqet](https://github.com/lib42/heqet-apps/blob/main/bootstrap.yaml): `kubectl apply -f bootstrap.yaml`
+ - Deploy apps to your userdata repo & Enjoy Argo-CD!
 
 
 ## Example Configuration
@@ -76,3 +86,5 @@ Installing heqet is quite simple:
 ## Docs
 
 Check out the full documentation: [here](https://lib42.github.io/heqet)
+
+Any problems? Open an issue. [Contributions welcome](https://github.com/lib42/heqet)
