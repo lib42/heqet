@@ -716,34 +716,9 @@
 <p>Thanks to this great feature of Argo-CD, your custom configuration &amp; heqet's helm chart can be updated independantly.</p>
 <h3 id="example-configuration-using-argo-cd-helm-chart">Example Configuration using Argo-CD Helm-Chart<a class="headerlink" href="#example-configuration-using-argo-cd-helm-chart" title="Permanent link">&para;</a></h3>
 <p>In this example we are using the official <a href="https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd">Argo-CD Helm Chart</a>:</p>
-<p>Here is a incomplere snippet from the <code>values.yaml</code>:</p>
+<p>Here is a incomplere snippet, find the full values.yaml <a href="https://github.com/lib42/heqet-apps/blob/main/projects/argocd/values/argocd.yaml">here</a>. But these is basically the full configuration to add the Heqet configuration management plugin to Argo-CD:</p>
 <pre><code class="language-yaml">repoServer:
-  # We'll need these for the sidecar injection to work:
-  volumes:
-  - name: var-files
-    emptyDir: {}
-  - name: plugins
-    emptyDir: {}
-
-  # Shared plugin directory
-  volumeMounts:
-  - mountPath: /home/argocd/cmp-server/plugins
-    name: plugins
-
-  # This copies the CMP-Server for the sidecar
-  initContainers:
-  - name: copy-cmp-server
-    image: quay.io/argoproj/argocd:latest
-    command:
-    - cp
-    - -n
-    - /usr/local/bin/argocd
-    - /var/run/argocd/argocd-cmp-server
-    volumeMounts:
-      - mountPath: /var/run/argocd
-        name: var-files
-
-  # Heqet Sidecar:
+  # Heqet Sidecar Container:
   extraContainers:
   - name: cmp-heqet
     command: [/var/run/argocd/argocd-cmp-server]
@@ -762,7 +737,7 @@
 <p>Notice: Make sure the repo-server &amp; sidecar use the same /tmp-volume!</p>
 <h2 id="creating-your-userdata-git-repository">Creating your userdata git repository<a class="headerlink" href="#creating-your-userdata-git-repository" title="Permanent link">&para;</a></h2>
 <p>When the CMP is setup, it's time to deploy your first app using heqet. For this you'll need a "userdata"-repo. </p>
-<p>For an example, check out my homelab config: <a href="https://github.com/Nold360/hive-apps/">hive-apps</a></p>
+<p>Feel free to fork our userdata example repository:  <a href="https://github.com/Nold360/hive-apps/">hive-apps</a></p>
 <p>One important file is the <code>Heqetfile</code>. It's required to make the CMP work &amp; will be used to determine which heqet-version / branch to use.</p>
 <p>Example Heqetfile:</p>
 <pre><code class="language-bash"># Heqetfile

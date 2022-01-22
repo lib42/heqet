@@ -392,6 +392,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#repo-structure" class="md-nav__link">
+    Repo Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apps" class="md-nav__link">
     Apps
   </a>
@@ -422,13 +429,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#config" class="md-nav__link">
-    Config
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#policies" class="md-nav__link">
     Policies
   </a>
@@ -442,14 +442,16 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#apply-to-project" class="md-nav__link">
+    Apply to Project
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#snippets" class="md-nav__link">
-    Snippets
+  <a href="#value-snippets" class="md-nav__link">
+    Value Snippets
   </a>
   
 </li>
@@ -463,6 +465,18 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#addons" class="md-nav__link">
+    Addons
+  </a>
   
 </li>
       
@@ -752,16 +766,35 @@
 
 <h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
 <p>This page gives you a quick overview about the main components &amp; terminology of heqet.</p>
-<h3 id="apps">Apps<a class="headerlink" href="#apps" title="Permanent link">&para;</a></h3>
+<h2 id="repo-structure">Repo Structure<a class="headerlink" href="#repo-structure" title="Permanent link">&para;</a></h2>
+<pre><code>├── bootstrap.yaml            # Used for initial bootstrap of Heqet
+├── Heqetfile                 # Required for Heqet to work
+├── projects/
+│   └── argocd/               # Every project has it's own folder
+│       ├── project.yml       # Main project configuration
+│       ├── manifests/        # Project related static yaml manifests
+│       └── values/
+│           └── argocd.yaml   # Every app can get it's own values file
+├── README.md
+├── renovate.json             # Preconfigured renovatebot for heqet config
+├── resources/
+│   ├── manifests/            # Your static manifests go here
+│   │   └── foobar.yaml       
+│   ├── networkpolicy.yml     # NetworkPolicies &amp; create groups of policies
+│   ├── repos.yml             # Helm Chart Repositories aliases
+│   └── snippets/             # Value Snippets can be included into apps
+│       └── tmpdirs.yaml      # They will be merged with all other app values 
+└── values.yaml               # Defaults &amp; main config for heqet
+</code></pre>
+<h2 id="apps">Apps<a class="headerlink" href="#apps" title="Permanent link">&para;</a></h2>
 <p>Apps are Helm-Charts to deploy. Every app is part of a Project &amp; needs to be listed in the <code>apps</code>-list inside the <code>project.yaml</code>. Every app will become an Argo-CD <code>Application</code>-CRD. The <code>Application</code>s configuration can be changed on a global base inside the <code>values.yaml</code>, at project level inside the <code>project.yaml</code> or on app level inside the app definition.</p>
-<h3 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h3>
+<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
 <p>Projects are collections of Apps. Every project will become a <code>Namespace</code> and a Argo-CD Project. The name of the project, namespace and project will depend on the name of the project-directory but can also be configured in the <code>project.yaml</code>.</p>
 <p>Projects can also contain <code>NetworkPolicies</code> and static manifests usind the <code>manifests</code> folder inside the project directory.</p>
-<h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <p>Resources or also called "Addons" or "Generators" are additional helper functions that can create additinal Kubernetes resources like <code>NetworkPolicy</code>s or <code>VaultSecrets</code>.</p>
 <p>Eg. NetworkPolicies can be predefined, grouped &amp; later applied in multiple apps.</p>
-<h4 id="networkpolicies-networkpolicyyaml">NetworkPolicies [networkpolicy.yaml]<a class="headerlink" href="#networkpolicies-networkpolicyyaml" title="Permanent link">&para;</a></h4>
-<h5 id="config">Config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h5>
+<h3 id="networkpolicies-networkpolicyyaml">NetworkPolicies [networkpolicy.yaml]<a class="headerlink" href="#networkpolicies-networkpolicyyaml" title="Permanent link">&para;</a></h3>
 <p>The NetworkPolicy-Addon has a few global configuration options. Like which polcies to apply by default &amp; if the communication inside a Namespace should always be allowed.</p>
 <pre><code class="language-yaml">networkPolicy:
   config:
@@ -773,7 +806,7 @@
       groups: []
       rules: []
 </code></pre>
-<h5 id="policies">Policies<a class="headerlink" href="#policies" title="Permanent link">&para;</a></h5>
+<h4 id="policies">Policies<a class="headerlink" href="#policies" title="Permanent link">&para;</a></h4>
 <p>NetworkPolicies are defined in the Kubernetes spec, but inside a dict <code>networkPolicy.rules</code>:</p>
 <pre><code class="language-yaml">networkPolicy:
   rules:
@@ -799,7 +832,7 @@
               app.heqet.gnu.one/name: ingress-external
 </code></pre>
 <p>Notice: Heqet will apply annotations to every namespace e.g. <code>app.heqet.gnu.one/name</code> containing the name of the app. This way we can easily predefine policies that apply on a specific app.</p>
-<h5 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h5>
+<h4 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h4>
 <p>Now comes the heqet magic! NetworkPolcies can be grouped and groups of NetworkPolcies can be applied to Projects.</p>
 <pre><code class="language-yaml">networkPolicy:
   groups:
@@ -816,15 +849,17 @@
     allow-ingress:
       [...]
 </code></pre>
+<h4 id="apply-to-project">Apply to Project<a class="headerlink" href="#apply-to-project" title="Permanent link">&para;</a></h4>
+<p>After defining your polcies you can assign them to one or multiple projects like this:</p>
 <pre><code class="language-yaml">config:
-  description: Gitea Git Server
+  description: Project example with NetworkPolcies applied
   networkPolicy:
     groups:
     - internet
     rules:
     - allow-ssh
 </code></pre>
-<h4 id="snippets">Snippets<a class="headerlink" href="#snippets" title="Permanent link">&para;</a></h4>
+<h4 id="value-snippets">Value Snippets<a class="headerlink" href="#value-snippets" title="Permanent link">&para;</a></h4>
 <p>Value snippets can be used, when multiple apps use the same value structure. A good example for this are the charts by the <a href="https://k8s-at-home.com/">K8s-at-home project</a>. </p>
 <p>Here's an example for <code>resources/snippets/noRoot.yaml</code>:</p>
 <pre><code class="language-yaml">securityContext:
@@ -868,9 +903,11 @@ repos:
 apps:
 - name: my-app
   repo: bitnami
-
+  ...
 - name: another-app
 </code></pre>
+<h2 id="addons">Addons<a class="headerlink" href="#addons" title="Permanent link">&para;</a></h2>
+<p>Heqet "special" features are called "addons" - <a href="https://lib42.github.io/heqet/addons/">Addons Documentation</a></p>
 
               
             </article>

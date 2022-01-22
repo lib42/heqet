@@ -436,8 +436,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#setup" class="md-nav__link">
+    Setup
   </a>
   
 </li>
@@ -707,7 +707,7 @@
 <p>A helm plugin for templating heqet configuration into kubernetes resources. It can also be used to e.g. validate your configuration or for CI/CD.
 This plugin is part of <a href="https://github.com/lib42/heqet">Heqet</a>.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sh">&gt; helm plugin install https://github.com/lib42/helm-heqet.git
+<pre><code class="language-sh">helm plugin install https://github.com/lib42/helm-heqet.git
 </code></pre>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>Important: All commands must be executed inside your heqet project, with a <code>Heqetfile</code> in the current working directory!</p>
@@ -719,9 +719,10 @@ This plugin is part of <a href="https://github.com/lib42/heqet">Heqet</a>.</p>
 <li><code>helm heqet generate</code>: Combination of update &amp; template [for CI/CD usage]</li>
 <li><code>helm heqet help</code>: print help</li>
 </ul>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sh">&gt; helm heqet setup
-&gt; helm heqet template
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>Open a terminal &amp; navigate to your Heqet userdata repository. Make sure a <code>Heqetfile</code> is in your current working directory.</p>
+<p>Heqet needs to be setup first [e.g. to download the heqet chart]:</p>
+<pre><code class="language-sh">helm heqet setup
 </code></pre>
 <h2 id="container-image">Container Image<a class="headerlink" href="#container-image" title="Permanent link">&para;</a></h2>
 <p>Additionally there is a container image containing the plugin: <code>lib42/heqet-cli</code></p>

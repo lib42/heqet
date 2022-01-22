@@ -783,15 +783,12 @@
 <li><code>/resources/snippets/</code> - Value snippets for your apps</li>
 </ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>Installing heqet is quite simple:</p>
-<ol>
-<li>Install Argo-CD version &gt;= 2.2.0 on your cluster &amp; set it up to your needs</li>
-<li>Configure Argo-CD Plugin</li>
-<li>Create your heqet userdata git repository</li>
-<li>Configure <code>manifests/heqet-apps.yaml</code> to match your Setup</li>
-<li><code>kubectl apply -f manifests/heqet-apps.yaml</code></li>
-<li>Create your configuration in <code>projects</code> and <code>resources</code> folders </li>
-</ol>
+<p>Installing heqet is quite simple:
+0. Install <a href="https://argo-cd.readthedocs.io/en/stable">Argo-CD</a> [Version &gt;= 2.2.0] on your Kubernetes cluster
+1. Configure the Heqet Argo-CD Configuration-Management-Plugin <a href="https://lib42.github.io/heqet/getting-started/">Getting Started</a>
+2. Create your heqet userdata git repository - <a href="#example-configuration">Example Configuration</a>
+3. Deploy your first app to <a href="https://github.com/lib42/heqet-apps/blob/main/bootstrap.yaml">bootstrap Heqet</a>: <code>kubectl apply -f bootstrap.yaml</code>
+5. Deploy apps to your userdata repo &amp; Enjoy Argo-CD!</p>
 <h2 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -812,7 +809,8 @@
 </tbody>
 </table>
 <h2 id="docs">Docs<a class="headerlink" href="#docs" title="Permanent link">&para;</a></h2>
-<p>Check out the full documentation: <a href="https://lib42.github.io/heqet">here</a></p>
+<p>Check out the full documentation: <a href="https://lib42.github.io/heqet">here</a>
+Any problems? Open an issue. <a href="https://github.com/lib42/heqet">Contributions welcome</a></p>
 
               
             </article>
