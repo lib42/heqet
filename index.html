@@ -224,8 +224,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="helm-plugin/" class="md-tabs__link">
-      Helm Plugin
+    <a href="filestructure/" class="md-tabs__link">
+      Userdata Repository
     </a>
   </li>
 
@@ -236,8 +236,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="filestructure/" class="md-tabs__link">
-      Filestructure
+    <a href="helm-plugin/" class="md-tabs__link">
+      Heqet CLI
     </a>
   </li>
 
@@ -252,7 +252,7 @@
   
     <li class="md-tabs__item">
       <a href="config/application/" class="md-tabs__link">
-        Configuration
+        Reference
       </a>
     </li>
   
@@ -484,8 +484,8 @@
   
   
     <li class="md-nav__item">
-      <a href="helm-plugin/" class="md-nav__link">
-        Helm Plugin
+      <a href="filestructure/" class="md-nav__link">
+        Userdata Repository
       </a>
     </li>
   
@@ -499,8 +499,8 @@
   
   
     <li class="md-nav__item">
-      <a href="filestructure/" class="md-nav__link">
-        Filestructure
+      <a href="helm-plugin/" class="md-nav__link">
+        Heqet CLI
       </a>
     </li>
   
@@ -523,14 +523,14 @@
       
       
         <label class="md-nav__link" for="__nav_6">
-          Configuration
+          Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Configuration" data-md-level="1">
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          Configuration
+          Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -739,7 +739,7 @@
 
 <h1 id="heqet">Heqet<a class="headerlink" href="#heqet" title="Permanent link">&para;</a></h1>
 <p><em>Heqet (Egyptian ḥqt, also ḥqtyt "Heqtit") is an Egyptian goddess of fertility.</em></p>
-<p>Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It's goal is to reduce the need of redundant configuration in a GitOps environment, by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all ArgoCD-Applications, -Projects, Namespaces &amp; more using Argo-CDs <a href="https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/">App-of-Apps-Pattern</a>.</p>
+<p>Heqet is my attempt to make Kubernetes GitOps Deployments as easy as possible. It's goal is to reduce the need of redundant configuration in a GitOps environment, by generating the required Kubernetes resource definitions for you. Heqet heavily relies on a Helm-Chart which will generate all [ArgoCD]*(https://argo-cd.readthedocs.io/en/stable/)-Applications, -Projects, Namespaces &amp; more using Argo-CDs <a href="https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/">App-of-Apps-Pattern</a>.</p>
 <h2 id="what-problem-does-heqet-solve">What problem does heqet solve?<a class="headerlink" href="#what-problem-does-heqet-solve" title="Permanent link">&para;</a></h2>
 <p>Kubernetes allows declarative infrastructure which can be stored in git easily. Argo-CD is used to deploy those configurations. With Argo-CD it's simple to deploy Helm-Charts. But you still need to write a lot of redundant yaml-files.</p>
 <p>Heqet reduces the configuration required to deploy Helm-chart-based applications to the bare minimum:</p>
@@ -767,28 +767,33 @@
 <p>The heqet Configuration-Management-Plugin [CMP] will generate ArgoCD-Applications &amp; -Projects, Namespaces and if required <code>VaultSecret</code>s, <code>NetworkPolicies</code>, Argo-CD Repositories and more. </p>
 <h3 id="filestructure">Filestructure<a class="headerlink" href="#filestructure" title="Permanent link">&para;</a></h3>
 <p>Heqet is highly opinionated about it's structure. It helps you keeping multiple projects organized. The user configuration is organized like this:</p>
-<ul>
-<li><code>/projects/</code> - This directory contains all your Application/Project config</li>
-<li><code>/projects/name-of-project/</code> - This directory name represents the name of our project</li>
-<li><code>/projects/name-of-project/project.yaml</code> - The most important config, containing all our applications &amp; project config</li>
-<li><code>/projects/name-of-project/values/</code> - Every app in our project can have it's own <code>values.yaml</code> here, named: <code>name-of-app.yaml</code></li>
-<li><code>/projects/name-of-project/values/name-of-app.yaml</code> - Values file for the application "name-of-app"</li>
-<li>
-<p><code>/projects/name-of-project/manifests/</code> - Static yaml manifests for your app</p>
-</li>
-<li>
-<p><code>/resources/</code> - This directory contains all global config, like NetworkPolcies, Repos </p>
-</li>
-<li><code>/resources/manifests/</code> - Can be used for static YAML-Manifests, like CRD's and other global configurations</li>
-<li><code>/resources/snippets/</code> - Value snippets for your apps</li>
-</ul>
+<p>```
+├── bootstrap.yaml            # Used for initial bootstrap of Heqet
+├── Heqetfile                 # Required for Heqet to work
+├── projects/
+│   └── argocd/               # Every project has it's own folder
+│       ├── project.yml       # Main project configuration
+│       ├── manifests/        # Project related static yaml manifests
+│       └── values/
+│           └── argocd.yaml   # Every app can get it's own values file
+├── README.md
+├── renovate.json             # Preconfigured renovatebot for heqet config
+├── resources/
+│   ├── manifests/            # Your static manifests go here
+│   │   └── foobar.yaml     <br />
+│   ├── networkpolicy.yml     # NetworkPolicies &amp; create groups of policies
+│   ├── repos.yml             # Helm Chart Repositories aliases
+│   └── snippets/             # Value Snippets can be included into apps
+│       └── tmpdirs.yaml      #   \ They will be merged with all other app values 
+└── values.yaml               # Defaults &amp; main config for heqet</p>
+<p>For more see: <a href="https://lib42.github.io/heqet/filestructure/">Filestructure</a></p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>Installing heqet is quite simple:
-0. Install <a href="https://argo-cd.readthedocs.io/en/stable">Argo-CD</a> [Version &gt;= 2.2.0] on your Kubernetes cluster
-1. Configure the Heqet Argo-CD Configuration-Management-Plugin <a href="https://lib42.github.io/heqet/getting-started/">Getting Started</a>
-2. Create your heqet userdata git repository - <a href="#example-configuration">Example Configuration</a>
-3. Deploy your first app to <a href="https://github.com/lib42/heqet-apps/blob/main/bootstrap.yaml">bootstrap Heqet</a>: <code>kubectl apply -f bootstrap.yaml</code>
-5. Deploy apps to your userdata repo &amp; Enjoy Argo-CD!</p>
+ 0. Install <a href="https://argo-cd.readthedocs.io/en/stable">Argo-CD</a> [Version &gt;= 2.2.0] on your Kubernetes cluster
+ 1. Configure the Heqet Argo-CD Configuration-Management-Plugin <a href="https://lib42.github.io/heqet/getting-started/">Getting Started</a>
+ 2. Create your heqet userdata git repository - <a href="#example-configuration">Example Configuration</a>
+ 3. Deploy your first app to <a href="https://github.com/lib42/heqet-apps/blob/main/bootstrap.yaml">bootstrap Heqet</a>: <code>kubectl apply -f bootstrap.yaml</code>
+ 5. Deploy apps to your userdata repo &amp; Enjoy Argo-CD!</p>
 <h2 id="example-configuration">Example Configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -809,8 +814,8 @@
 </tbody>
 </table>
 <h2 id="docs">Docs<a class="headerlink" href="#docs" title="Permanent link">&para;</a></h2>
-<p>Check out the full documentation: <a href="https://lib42.github.io/heqet">here</a>
-Any problems? Open an issue. <a href="https://github.com/lib42/heqet">Contributions welcome</a></p>
+<p>Check out the full documentation: <a href="https://lib42.github.io/heqet">here</a></p>
+<p>Any problems? Open an issue. <a href="https://github.com/lib42/heqet">Contributions welcome</a></p>
 
               
             </article>
