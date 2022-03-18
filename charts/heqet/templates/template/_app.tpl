@@ -5,7 +5,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .name | quote }}
-  namespace: argocd
+  namespace: {{ .argocdNamespace | default "argocd" }}
   labels:
     app.heqet.gnu.one/name: {{ .name }}
     app.heqet.gnu.one/project: {{ .project }}

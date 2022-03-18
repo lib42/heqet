@@ -5,7 +5,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: {{ $config.type | default "helm" }}-repo-{{ $name }}
-  namespace: argocd
+  namespace: {{ .argocdNamespace | default "argocd" }}
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:

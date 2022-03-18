@@ -4,7 +4,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: {{ .name }}
-  namespace: argocd
+  namespace: {{ .argocdNamespace | default "argocd" }}
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
 spec:

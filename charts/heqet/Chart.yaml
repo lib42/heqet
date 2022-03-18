@@ -2,4 +2,4 @@ apiVersion: v2
 appVersion: "3.0"
 description: Simple ArgoCD App-of-Apps Bootstrapping Boilerplate
 name: heqet
-version: 3.0.0
+version: 3.0.1

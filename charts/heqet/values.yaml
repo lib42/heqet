@@ -3,6 +3,9 @@ userdata: userdata
 
 # Default values that are used for creating ArgoCD `Application` definitions
 defaults:
+  # ArgoCD Namespace:
+  argocdNamespace: argocd
+
   # ArgoCD Project
   project: "default"
 
