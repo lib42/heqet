@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: "3.0"
-description: Simple ArgoCD App-of-Apps Bootstrapping Boilerplate
+appVersion: "4.0"
+description: Simple FluxCD App-of-Apps Bootstrapping Boilerplate
 name: heqet
-version: 3.0.1
+version: 4.0.2

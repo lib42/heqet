@@ -1,4 +1,14 @@
 {{/* Heqet Main Functions */}}
+{{/* 
+  Retrun FluxCD Repository Type
+*/}}
+{{- define "heqet.fluxcd.repoType" }}
+  {{- if .repo }} 
+    {{- print "GitRepository" }}
+  {{- else }}
+    {{- print "HelmRepository" }}
+  {{- end }}
+{{- end -}}
 
 {{/* 
   Collect resource configs & saves them in $.resources
@@ -23,16 +33,13 @@
     {{- if not (hasKey $project.config "spec") }}
       {{- $_ := set $project.config "spec" dict }}
     {{- end }}
-    {{- $_ := deepCopy $.Values.projectDefaults | merge $project.config.spec }}
+		{{- $_ := deepCopy $.Values.defaults | merge $project.config.spec }}   
 
     {{/* Include manifests in project dir */}}
     {{- range $manifest, $_ := $.Files.Glob (printf "%s/manifests/*.y*ml" (dir $path)) }}
 ---
 {{ $.Files.Get $manifest }}
      {{- end }}
-
-    {{/* Generate ArgoCD project */}}
-    {{- include "heqet.template.project" $project.config -}}
 
     {{/* Generate single project namespace */}}
   	{{- if not (hasKey $project.config "namespace") -}}

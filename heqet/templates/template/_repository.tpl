@@ -1,15 +1,33 @@
 {{- define "heqet.template.repository" }}
-  {{- range $name, $config := $.resources.repos }}
+  {{- $repos := . }}
+  {{-  if $.resources }}
+    {{- $repos = $.resources.repos }}
+  {{- end }}
+  {{- range $name, $config := $repos }}
+    {{- $repoType := ($config.type | default "helm") }} 
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+{{- if eq $repoType "helm" }}
+kind: HelmRepository
+{{- else }}
+kind: GitRepository
+{{- end }}
 metadata:
-  name: {{ $config.type | default "helm" }}-repo-{{ $name }}
-  namespace: {{ .argocdNamespace | default "argocd" }}
+  name: {{ $name }}
+  namespace: {{ .fluxNamespace | default "flux-system" }}
   labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
+    repo.heqet.gnu.one/name: {{ $name }}
+  {{-  if $config.app }}
+    app.heqet.gnu.one/name: {{ $config.app }}
+  annotations:
+    repo.heqet.gnu.one/type: auto-created
+  {{- end }}
+spec:
+  interval: {{ $config.interval | default "5m" }}
   url: {{ $config.url }}
-  type: {{ $config.type | default "helm" }}
-	{{- end }}
+  {{- if $config.branch }}
+  ref:
+    branch: {{ $config.branch }}
+  {{- end }}
+ {{- end }}
 {{- end }}
