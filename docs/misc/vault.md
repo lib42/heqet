@@ -100,8 +100,9 @@ We expect you already have setup a PKI & Intermediate PKI. You will need a polic
 And a role: [dc = my local domain]
 ``` shellsession
 vault write pki_int/roles/dc \
-    allowed_domains=.dc \
+    allowed_domains=dc \
     allow_subdomains=true \
+    require_cn=false \
     max_ttl=72h
 ```
 
