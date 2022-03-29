@@ -845,8 +845,9 @@ vault kv put heqet/minio/minio-secret secret-key=secret access-key=access
 <p>We expect you already have setup a PKI &amp; Intermediate PKI. You will need a policy to allow your approle to create new certs:</p>
 <p>And a role: [dc = my local domain]</p>
 <pre><code class="language-shellsession">vault write pki_int/roles/dc \
-    allowed_domains=.dc \
+    allowed_domains=dc \
     allow_subdomains=true \
+    require_cn=false \
     max_ttl=72h
 </code></pre>
 <p>Policy:</p>
