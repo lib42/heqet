@@ -29,20 +29,26 @@ spec:
   {{- with .chart }}
     chart: {{ . | quote }}
   {{- end }}
+  {{/* FIXME: Keep v3 API support, .parameters & .values are deprecated */}}
+  {{- if or (.helm) (or .parameters .values) }}
     helm:
-      {{- with .parameters }}
+    {{- with .helm }}
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+  {{- end }}
+  {{- with .parameters }}
       parameters:
-				{{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .values }}
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
+  {{- with .values }}
       values: |
-				{{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
   {{- with .syncPolicy }}
   syncPolicy:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-	{{- with .ignoreDiff }}
+  {{- with .ignoreDiff }}
   ignoreDifferences:
     {{ .ignoreDiff | toYaml | nindent 4 }}
 	{{- end }}

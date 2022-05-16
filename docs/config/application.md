@@ -23,6 +23,7 @@
 | ignoreDiff        | array  |     | See ArgoCD docs | ArgoCD [ignoreDifferences](https://argoproj.github.io/argo-cd/user-guide/diffing/)
 | parameters        | array  |     |- name: ingress.host<br>value: awesome.url | Parameters override values of app |
 | include           | array  |     | - value-snippet  | Include a values snippet from `resources/snippets` |
+| helm              | dict   |     |helm:<br>  skipCrds: true | Set all options for ArgoCD's [helm argument](https://argo-cd.readthedocs.io/en/stable/user-guide/helm/) |
 
 ## Full Example
 

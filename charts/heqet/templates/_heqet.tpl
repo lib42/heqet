@@ -1,6 +1,6 @@
 {{/* Heqet Main Functions */}}
 
-{{/* 
+{{/*
   Collect resource configs & saves them in $.resources
 */}}
 {{- define "heqet.resources" }}
@@ -12,12 +12,12 @@
   {{- $_ := set $ "resources" $resources }}
 {{- end -}}
 
-{{/* 
-  Collect project, app & resource configs. After that template yaml files 
+{{/*
+  Collect project, app & resource configs. After that template yaml files
 */}}
 {{- define "heqet.apps" }}
-	{{- range $path, $_ := .Files.Glob (printf "%s/projects/*/*.y*ml" $.Values.userdata) }}
-  	{{- $project := $.Files.Get $path | fromYaml | default dict }}
+    {{- range $path, $_ := .Files.Glob (printf "%s/projects/*/*.y*ml" $.Values.userdata) }}
+      {{- $project := $.Files.Get $path | fromYaml | default dict }}
     {{- $_ := set $project.config "name" ($project.config.name | default (base (dir $path))) -}}
 
     {{- if not (hasKey $project.config "spec") }}
@@ -28,20 +28,20 @@
     {{/* Include manifests in project dir */}}
     {{- range $manifest, $_ := $.Files.Glob (printf "%s/manifests/*.y*ml" (dir $path)) }}
 ---
-{{ $.Files.Get $manifest }}
-     {{- end }}
+      {{ $.Files.Get $manifest }}
+    {{- end }}
 
     {{/* Generate ArgoCD project */}}
     {{- include "heqet.template.project" $project.config -}}
 
     {{/* Generate single project namespace */}}
-  	{{- if not (hasKey $project.config "namespace") -}}
+    {{- if not (hasKey $project.config "namespace") -}}
       {{- $_ := set $project.config "namespace" $project.config.name }}
-  	{{- end -}}
-  
+    {{- end -}}
+
     {{- if not (hasKey $project.config "existingNamespace") -}}
-    	{{- include "heqet.template.namespace" $project.config -}}
-  	{{- end -}}
+      {{- include "heqet.template.namespace" $project.config -}}
+    {{- end -}}
 
     {{/* Collect project NetworkPolicies */}}
     {{- if hasKey $project.config "networkPolicy" }}
@@ -58,7 +58,7 @@
       {{- $_ := deepCopy $project.config | merge $app }}
       {{- $_ := deepCopy $.Values.defaults | merge $app }}
       {{- $_ := set $app "project" ($project.config.name | default (base (dir $path))) }}
-      {{- $_ := set $app "isApplication" true -}} 
+      {{- $_ := set $app "isApplication" true -}}
 
       {{/* Resolve repoURL from repo name, if repoURL is not set */}}
       {{- if and (hasKey $app "repo") (not (hasKey $app "repoURL")) }}

@@ -1,7 +1,7 @@
 config:
   ## default: name of this directory
   #name:
-  
+
   description: My First Great Project
 
   ## NetworkPolicies
@@ -15,6 +15,12 @@ apps:
   chart: argo-cd
   targetRevision: 3.17.6
   syncWave: "0"
+
+  ## Helm Options:
+  #helm:
+  #  parameters:
+  #    - name: image
+  #      value: myreg/image:test
 
   ## VaultSecrets:
   # secrets:
