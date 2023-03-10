@@ -5,3 +5,4 @@ secrets
 site
 charts/heqet/userdata
 .gitmodules
+heqet/userdata
