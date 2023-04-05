@@ -50,7 +50,7 @@ spec:
   {{- end }}
   {{- with .ignoreDiff }}
   ignoreDifferences:
-    {{ .ignoreDiff | toYaml | nindent 4 }}
+    {{ toYaml . | nindent 4 }}
 	{{- end }}
 {{- with .secrets }}{{- include "heqet.template.secrets" $ }}{{- end }}
 {{- end }}
